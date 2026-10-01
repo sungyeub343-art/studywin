@@ -51,7 +51,7 @@ function layout({ title, description, body, canonical = siteUrl }) {
 }
 
 function hero(title, copy, eyebrow = "Gangwon Private Math Coaching", breadcrumb = "") {
-  return `<header class="hero"><div class="wrap hero-content">${breadcrumb ? `<div class="breadcrumb"><a href="/">홈</a> · ${breadcrumb}</div>` : ""}<p class="eyebrow">${eyebrow}</p><h1>${title}</h1><p class="hero-copy">${copy}</p><div class="hero-actions"><a class="button" href="#contact">무료 학습 상담</a><a class="button outline" href="#grade">학년별 수업 보기</a></div></div></header>`;
+  return `<header class="hero"><div class="wrap hero-content">${breadcrumb ? `<div class="breadcrumb"><a href="/">홈</a> · ${breadcrumb}</div>` : ""}<p class="eyebrow">${eyebrow}</p><h1>${title}</h1><p class="hero-copy">${copy}</p><div class="hero-actions"><a class="button" href="#contact">무료 학습 상담</a><a class="button outline" href="#grade">학년별 수업 보기</a><a class="button outline" href="tel:010-2928-3614">010-2928-3614 통화</a></div></div></header>`;
 }
 
 const proof = `<div class="proof"><div class="wrap proof-grid"><div class="proof-item"><strong>1:1 맞춤 설계</strong><span>현재 실력부터 목표까지 개인별 진도</span></div><div class="proof-item"><strong>18개 시군 수업</strong><span>강원 전 지역 대면·온라인 상담</span></div><div class="proof-item"><strong>중등·고등 전문</strong><span>내신, 선행, 수능을 한 흐름으로 관리</span></div></div></div>`;
