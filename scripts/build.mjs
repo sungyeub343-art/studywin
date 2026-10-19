@@ -222,7 +222,10 @@ function renderRegionModal(autoOpen = true) {
     document.body.style.overflow = '';
   }
 
-  ${autoOpen ? `setTimeout(openModal, 120);` : ``}
+  // 같은 방문(세션) 안에서는 처음 들어온 페이지에서만 자동으로 띄웁니다.
+  var seen = false;
+  try { seen = sessionStorage.getItem('regionModalSeen') === '1'; sessionStorage.setItem('regionModalSeen', '1'); } catch (e) {}
+  ${autoOpen ? `if (!seen) setTimeout(openModal, 120);` : ``}
 
   if (closeBtn) {
     closeBtn.addEventListener('click', closeModal);
