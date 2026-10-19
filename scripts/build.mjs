@@ -33,8 +33,93 @@ const grades = [
   ["예비중2", "일차방정식과 함수의 기초를 다시 확인한 뒤 식의 계산과 연립방정식을 안정적으로 연결합니다."],
   ["예비중3", "고등 수학과 바로 이어지는 함수·방정식·도형의 핵심 개념을 복습하고 내신 난도를 높입니다."],
   ["예비고1", "중학 전 범위의 취약점을 진단하고 공통수학의 다항식, 방정식, 경우의 수를 체계적으로 시작합니다."],
-  ["예비고2", "공통수학의 빈틈을 보완하면서 학교 선택 과목과 진로에 맞춰 수학Ⅰ·수학Ⅱ 학습 순서를 설계합니다."],
+  ["예비고2", "공통수학의 빈틈을 보완하면서 학교 선택 과목과 진로에 맞춰 대수·미적분Ⅰ·확률과 통계 학습 순서를 설계합니다."],
   ["예비고3", "수능 출제 단원별 개념과 기출을 연결하고, 제한 시간 안에 점수를 만드는 실전 루틴을 완성합니다."]
+];
+
+const phone = "010-2928-3614";
+const buildDate = new Date();
+
+// 학교급별 키워드 페이지: "지역명 + 초등/중등/고등 + 수학/수학수업/수학공부/기초수학/수학내신/수능대비/수능수학"
+const levels = [
+  {
+    slug: "elementary", label: "초등", student: "초등학생", eyebrow: "ELEMENTARY MATH",
+    titleTail: "초등 수학수업·기초수학 1:1 맞춤",
+    summary: "연산 실수와 문장제 이해를 바로잡고 중학 수학까지 이어지는 기초를 만드는 초등 1:1 수학수업",
+    card: "연산·도형·문장제 등 기초수학을 진단하고 학년 진도에 맞춰 바른 수학공부 습관을 만듭니다.",
+    topics: [
+      ["수학수업", "교과서 단원 순서에 맞춰 개념을 그림과 구체물로 먼저 이해하고, 같은 원리의 문제를 학생이 직접 설명하며 마무리합니다. 문장제를 읽고 식으로 바꾸는 과정을 매 수업 연습합니다."],
+      ["수학공부", "수업이 없는 날에도 수학공부가 이어지도록 하루 15~30분 분량의 연산·복습 과제를 정하고, 다음 수업에서 틀린 이유를 함께 확인합니다. 빨리 푸는 것보다 정확하게 푸는 습관을 먼저 만듭니다."],
+      ["기초수학", "곱셈·나눗셈, 분수·소수의 계산, 도형과 측정처럼 이후 학년의 바탕이 되는 기초수학의 빈틈을 진단하고, 필요하면 이전 학년 내용까지 거슬러 올라가 다시 채웁니다."]
+    ],
+    grades: [
+      ["초1", "수 세기, 덧셈·뺄셈, 여러 가지 모양으로 수 감각을 익히고 숫자를 바르게 쓰는 습관을 기릅니다."],
+      ["초2", "세 자리 수, 받아올림·받아내림, 곱셈구구를 익히며 계산 원리를 말로 설명하는 연습을 합니다."],
+      ["초3", "곱셈·나눗셈과 분수·소수의 첫 개념을 다루는 시기로, 계산 속도보다 원리 이해에 집중합니다."],
+      ["초4", "큰 수, 분수의 덧셈·뺄셈, 각도와 삼각형을 다루며 문장제 해석을 본격적으로 연습합니다."],
+      ["초5", "약수와 배수, 약분과 통분, 분수의 곱셈 등 중학 수학의 바탕이 되는 단원을 꼼꼼히 다집니다."],
+      ["초6", "분수·소수의 나눗셈, 비와 비율, 입체도형을 정리하고 예비중1 과정으로 자연스럽게 연결합니다."]
+    ],
+    faq: [
+      ["{name} 초등 수학과외는 몇 학년부터 시작하면 좋나요?", "연산 실수가 반복되거나 문장제를 어려워하기 시작하는 초3~초4에 많이 시작합니다. 다만 학년보다 현재 상태가 중요하므로, 첫 상담에서 기초수학 진단 후 수업 시작 시점과 진도를 함께 정합니다."],
+      ["기초수학이 부족한데 학년 진도를 따라갈 수 있을까요?", "학교 진도는 유지하되 매 수업 일부를 이전 학년 기초 보충에 배정합니다. 빈틈이 메워지면 보충 비중을 줄이고 현재 학년 심화로 넘어갑니다."],
+      ["초등 수학공부, 집에서는 어떻게 도와주면 되나요?", "매 수업 후 학생이 해야 할 과제와 확인 포인트를 학부모님께 공유합니다. 집에서는 정해진 분량을 꾸준히 했는지만 확인해 주시면 됩니다."]
+    ]
+  },
+  {
+    slug: "middle", label: "중등", student: "중학생", eyebrow: "MIDDLE SCHOOL MATH",
+    titleTail: "중등 수학내신·수학공부 1:1 맞춤",
+    summary: "학교별 시험 범위에 맞춘 중등 수학내신 대비와 고등 수학으로 이어지는 개념 완성 1:1 수업",
+    card: "중1~중3 학교별 수학내신과 서술형, 기초수학 보충과 선행을 한 흐름으로 관리합니다.",
+    topics: [
+      ["수학수업", "개념 설명 → 예제 → 학생 설명 → 유사 문제 적용 순서로 진행합니다. 풀이 과정을 직접 써 보게 해 서술형 감점 요인을 수업 안에서 바로 고칩니다."],
+      ["수학공부", "개념 정리 노트와 오답 노트를 함께 만들고, 주간 과제 분량을 학생 일정에 맞게 조절합니다. 시험 4주 전부터는 학교 진도에 맞춘 내신 공부 계획으로 전환합니다."],
+      ["기초수학", "정수와 유리수 계산, 문자와 식, 일차방정식처럼 중등 수학 전체의 바탕이 되는 단원에서 막히는 지점을 찾아 다시 연결합니다. 초등 분수 연산이 약하면 그 부분부터 보충합니다."],
+      ["수학내신", "학교별 교과서와 기출 유형, 서술형 비중을 분석해 중간고사·기말고사 범위에 맞춘 문제를 준비합니다. 시험 직전에는 실전 시간 배분과 검산 습관까지 점검합니다."]
+    ],
+    grades: [
+      ["예비중1", "초등 분수·소수 계산을 점검하고 정수와 유리수, 문자와 식으로 중학 수학의 첫 틀을 만듭니다."],
+      ["중1", "소인수분해, 정수와 유리수, 일차방정식, 좌표평면과 그래프, 기본 도형과 통계를 다룹니다."],
+      ["중2", "유리수와 순환소수, 식의 계산, 연립방정식, 일차함수, 도형의 성질과 확률을 안정적으로 익힙니다."],
+      ["중3", "제곱근과 실수, 인수분해, 이차방정식, 이차함수, 삼각비와 원의 성질로 고등 수학을 준비합니다."]
+    ],
+    faq: [
+      ["{name} 중등 수학내신 대비는 언제부터 하나요?", "평소에는 학교 진도에 맞춰 개념과 유형을 다지고, 시험 4주 전부터 학교별 기출과 서술형 중심의 내신 대비로 전환합니다."],
+      ["중학교 수학 선행은 얼마나 하는 것이 좋나요?", "현재 학년 내용을 스스로 풀 수 있을 때 선행을 권합니다. 무리한 선행보다 현재 학년의 빈틈을 먼저 메우는 것이 고등 수학에서 더 큰 차이를 만듭니다."],
+      ["수학학원과 1:1 수학과외는 무엇이 다른가요?", "1:1 과외는 학생 한 명의 진도와 약점에 맞춰 수업 내용을 매번 조정할 수 있습니다. 질문이 많거나 학원 진도를 따라가기 어려운 학생에게 특히 효과적입니다."]
+    ]
+  },
+  {
+    slug: "high", label: "고등", student: "고등학생", eyebrow: "HIGH SCHOOL MATH",
+    titleTail: "수능수학·수능대비·내신 1:1 맞춤",
+    summary: "고등 수학내신과 수능수학을 함께 설계하는 1:1 수능대비 수업",
+    card: "고등 수학내신, 수능수학 기출 분석, 모의고사 실전 연습까지 목표 등급에 맞춰 관리합니다.",
+    topics: [
+      ["수학수업", "공통수학부터 대수, 미적분Ⅰ, 확률과 통계까지 학생이 배우는 과목 순서에 맞춰 개념과 문제 해결 전략을 연결합니다. 풀이를 외우지 않고 조건을 해석하는 방법을 훈련합니다."],
+      ["수학공부", "주간 학습량, 오답 관리, 복습 주기를 정해 혼자 하는 수학공부 시간이 실제 점수로 이어지도록 관리합니다. 내신 기간과 모의고사 기간의 공부 비중을 다르게 설계합니다."],
+      ["기초수학", "고등 수학이 갑자기 어려워졌다면 대부분 중학 수학의 인수분해, 이차함수, 방정식에서 시작된 빈틈입니다. 필요한 중등 단원만 골라 짧게 복습하고 고등 개념으로 바로 연결합니다."],
+      ["수학내신", "학교별 기출과 부교재, 수행평가 일정을 반영해 내신 대비 자료를 준비합니다. 고난도 문항과 서술형에서 점수를 지킬 수 있도록 시험 직전 실전 연습을 진행합니다."],
+      ["수능대비", "현재 모의고사 등급과 목표 등급을 기준으로 단원별 우선순위를 정합니다. 기본 개념 → 기출 분석 → 실전 모의고사 순서로 남은 기간에 맞춘 수능대비 계획을 세웁니다."],
+      ["수능수학", "평가원·교육청 기출을 단원별로 분석해 자주 출제되는 유형과 사고 과정을 익힙니다. 시험 시간 안에 풀 문제와 넘길 문제를 고르는 실전 감각까지 함께 다룹니다."]
+    ],
+    grades: [
+      ["예비고1", "중학 전 범위의 취약점을 진단하고 공통수학의 다항식, 방정식과 부등식, 경우의 수를 체계적으로 시작합니다."],
+      ["고1", "공통수학1·2 내신을 중심으로 첫 모의고사에 대비하며 고등 수학 공부 방법을 자리 잡습니다."],
+      ["고2", "대수, 미적분Ⅰ, 확률과 통계 등 선택 과목 내신과 수능 범위를 함께 고려해 학습 순서를 설계합니다."],
+      ["고3", "수능 출제 범위 기출 분석, 실전 모의고사, 취약 단원 집중 보완으로 목표 등급을 만듭니다."]
+    ],
+    faq: [
+      ["{name} 고등 수능대비는 언제부터 시작해야 하나요?", "고1부터 모의고사 결과로 취약 단원을 확인하고, 고2 겨울방학부터 본격적인 수능수학 기출 분석에 들어가는 흐름을 권합니다. 시작이 늦었다면 출제 비중이 높은 단원부터 우선 정리합니다."],
+      ["내신과 수능 중 무엇에 집중해야 하나요?", "목표 대학과 전형에 따라 다릅니다. 첫 상담에서 현재 내신·모의고사 성적과 목표를 확인한 뒤, 시험 기간에는 내신, 그 외 기간에는 수능수학 비중을 높이는 방식으로 균형을 잡습니다."],
+      ["고등 수학 기초가 부족해도 따라갈 수 있나요?", "필요한 중등 단원만 골라 짧게 복습한 뒤 고등 개념으로 바로 연결합니다. 기초수학 보충과 학교 진도를 병행하므로 내신 일정에 뒤처지지 않습니다."]
+    ]
+  }
+];
+
+const commonFaq = [
+  ["{full} 수학과외는 방문 수업인가요, 온라인 수업인가요?", "{areas} 등 {full} 생활권은 거리와 일정에 따라 방문 1:1 수업 또는 화상(온라인) 수업 중 선택할 수 있고, 두 방식을 섞어 진행할 수도 있습니다."],
+  ["수학과외 비용(수업료)은 어떻게 정해지나요?", "학년, 주당 수업 횟수, 1회 수업 시간에 따라 달라집니다. 무료 상담에서 학생 상황을 확인한 뒤 수업 방식과 비용을 투명하게 안내해 드립니다."],
+  ["상담은 어떻게 신청하나요?", "{phone}로 전화 주시거나 문자로 지역·학년·현재 고민을 남겨 주시면 연락드립니다. 최근 시험지나 사용 중인 교재를 보여 주시면 더 정확한 진단이 가능합니다."]
 ];
 
 const css = `@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=Pretendard:wght@400;500;600;700;800&display=swap');
@@ -68,9 +153,17 @@ const css = `@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:
 .region-modal-icon{width:26px;height:26px;margin-bottom:4px}
 .region-modal-icon svg{width:26px;height:26px}
 .region-modal-name{font-size:13.5px}
-}`;
+}
+.topics{background:#fff}.topic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.topic{padding:28px;border:1px solid var(--line);border-radius:var(--radius);background:var(--paper)}.topic small{color:var(--leaf);font-weight:800;font-size:13px}.topic h3{font-size:21px;margin:8px 0 10px}.topic p{color:var(--muted);font-size:15px;margin:0}
+.level-section{background:#fff}.level-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.level-card{display:flex;flex-direction:column;padding:30px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);transition:.2s}.level-card:hover{border-color:var(--leaf);transform:translateY(-2px)}.level-card small{color:var(--leaf);font-weight:800;font-size:13px}.level-card h3{font-size:23px;margin:8px 0 10px}.level-card p{color:var(--muted);font-size:15px;margin:0 0 14px}.level-card .topic-line{color:var(--forest);font-weight:700;font-size:14px}.level-card .more{margin-top:auto;color:var(--leaf);font-weight:800;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.chip{padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:#fff;font-size:14px;font-weight:600;transition:.2s}.chip:hover{border-color:var(--leaf);color:var(--forest)}
+.faq{background:var(--paper)}.faq-list{border-top:1px solid var(--ink)}.faq-item{border-bottom:1px solid var(--line)}.faq-item summary{cursor:pointer;padding:20px 0;font-weight:700;font-size:17px;list-style:none}.faq-item summary::-webkit-details-marker{display:none}.faq-item summary:before{content:"Q.";color:var(--leaf);margin-right:10px}.faq-item p{color:var(--muted);margin:0 0 20px;padding-left:30px}
+.related{background:#eef0e9;padding:72px 0}.related h2{font-family:"Gowun Batang",serif;font-size:clamp(26px,3vw,34px);margin-bottom:0}.related h3{font-size:16px;margin:30px 0 0}
+.footer-links{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:26px;padding-bottom:26px;border-bottom:1px solid rgba(255,255,255,.12);font-size:13px}.footer-links a:hover{color:#fff}
+@media(max-width:900px){.topic-grid,.level-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.topic-grid,.level-grid{grid-template-columns:1fr}.faq-item summary{font-size:16px}.faq-item p{padding-left:0}footer{padding-bottom:90px}}`;
 
-const nav = `<nav class="nav"><div class="wrap nav-inner"><a class="brand" href="/"><img src="/assets/logo.svg" alt="">강원 수학과외</a><div class="nav-links"><a href="/#program">수업 안내</a><a href="/#grade">학년별 준비</a><a href="#region" onclick="window.openRegionModal && (event.preventDefault(), window.openRegionModal())">지역 찾기</a><a class="nav-cta" href="#contact">상담 신청</a></div></div></nav>`;
+const nav = `<nav class="nav"><div class="wrap nav-inner"><a class="brand" href="/"><img src="/assets/logo.svg" alt="">강원 수학과외</a><div class="nav-links"><a href="/elementary/">초등 수학</a><a href="/middle/">중등 수학</a><a href="/high/">고등 수학</a><a href="#region" onclick="window.openRegionModal && (event.preventDefault(), window.openRegionModal())">지역 찾기</a><a class="nav-cta" href="#contact">상담 신청</a></div></div></nav>`;
 const regionLinks = regions.map(region => `<a class="region-link" href="/regions/${region.slug}/">${region.name}${region.type}<span>↗</span></a>`).join("");
 const gradeCards = grades.map(([name, text]) => `<article class="grade"><small>PREPARATION</small><h3>${name} 수학과외</h3><p>${text}</p></article>`).join("");
 
@@ -160,48 +253,125 @@ function renderRegionModal(autoOpen = true) {
 </script>`;
 }
 
-function layout({ title, description, body, canonical = siteUrl }) {
-  return `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="naver-site-verification" content="8d466503f61c14573b40c21964c1dece8020e823"><meta name="google-site-verification" content="xwZjq-emucjWhascjT0SQmVrFQ6zTWwD7_Ybaq-vXGA"><title>${title}</title><meta name="description" content="${description}"><link rel="canonical" href="${canonical}"><link rel="icon" href="/assets/logo.svg" type="image/svg+xml"><meta property="og:type" content="website"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta property="og:url" content="${canonical}"><meta property="og:image" content="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80"><link rel="stylesheet" href="/assets/style.css"><script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "EducationalOrganization", name: "강원 수학과외", url: siteUrl, areaServed: "강원특별자치도", description })}</script></head><body>${nav}${body}<div class="mobile-cta"><a href="tel:010-0000-0000">전화 상담</a><a href="#contact">상담 신청</a></div></body></html>`;
+// 받침 여부에 따라 "으로/로"를 붙입니다. (예: 준비로, 관리로, 수업으로)
+function withRo(word) {
+  const code = word.charCodeAt(word.length - 1) - 0xac00;
+  const jong = code >= 0 && code <= 11171 ? code % 28 : 0;
+  return word + (jong === 0 || jong === 8 ? "로" : "으로");
+}
+function withEul(word) {
+  const code = word.charCodeAt(word.length - 1) - 0xac00;
+  return word + (code >= 0 && code <= 11171 && code % 28 !== 0 ? "을" : "를");
 }
 
-function hero(title, copy, eyebrow = "Gangwon Private Math Coaching", breadcrumb = "") {
-  return `<header class="hero"><div class="wrap hero-content">${breadcrumb ? `<div class="breadcrumb"><a href="/">홈</a> · ${breadcrumb}</div>` : ""}<p class="eyebrow">${eyebrow}</p><h1>${title}</h1><p class="hero-copy">${copy}</p><div class="hero-actions"><button type="button" class="button" onclick="window.openRegionModal && window.openRegionModal()">📍 지역 바로 선택</button><a class="button outline" href="#contact">무료 학습 상담</a><a class="button outline" href="tel:010-2928-3614">010-2928-3614 통화</a></div></div></header>`;
+const gangwon = { name: "강원", full: "강원특별자치도", areas: "춘천, 원주, 강릉 등 18개 시군", focus: "학생별 진도와 목표에 맞춘 1:1 관리" };
+const regionContext = region => ({ ...region, full: `${region.name}${region.type}`, path: `/regions/${region.slug}/` });
+const levelPath = (level, ctx) => (ctx.slug ? `/regions/${ctx.slug}/${level.slug}/` : `/${level.slug}/`);
+const fill = (text, ctx) => text.replaceAll("{name}", ctx.name).replaceAll("{full}", ctx.full).replaceAll("{areas}", ctx.areas).replaceAll("{phone}", phone);
+const faqItems = (items, ctx) => items.map(([q, a]) => [fill(q, ctx), fill(a, ctx)]);
+const escapeXml = text => text.replace(/[<>&"']/g, ch => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;", "'": "&apos;" })[ch]);
+
+function layout({ title, description, body, canonical = siteUrl, crumbs = [], faq = [] }) {
+  const graph = [
+    { "@type": "EducationalOrganization", "@id": `${siteUrl}/#org`, name: "강원 수학과외", url: siteUrl, logo: `${siteUrl}/assets/logo.svg`, telephone: phone, description: "강원특별자치도 18개 시군 초등·중등·고등 1:1 수학과외", areaServed: regions.map(region => ({ "@type": "City", name: `강원특별자치도 ${region.name}${region.type}` })) },
+    { "@type": "WebSite", "@id": `${siteUrl}/#website`, name: "강원 수학과외", url: siteUrl, inLanguage: "ko-KR", publisher: { "@id": `${siteUrl}/#org` } },
+    { "@type": "WebPage", "@id": canonical, url: canonical, name: title, description, inLanguage: "ko-KR", isPartOf: { "@id": `${siteUrl}/#website` }, dateModified: buildDate.toISOString() }
+  ];
+  if (crumbs.length) graph.push({ "@type": "BreadcrumbList", itemListElement: crumbs.map(([name, url], index) => ({ "@type": "ListItem", position: index + 1, name, item: `${siteUrl}${url}` })) });
+  if (faq.length) graph.push({ "@type": "FAQPage", mainEntity: faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) });
+  return `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="naver-site-verification" content="8d466503f61c14573b40c21964c1dece8020e823"><meta name="google-site-verification" content="xwZjq-emucjWhascjT0SQmVrFQ6zTWwD7_Ybaq-vXGA"><title>${title}</title><meta name="description" content="${description}"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="${canonical}"><link rel="icon" href="/assets/logo.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="강원 수학과외" href="${siteUrl}/rss.xml"><meta property="og:type" content="website"><meta property="og:site_name" content="강원 수학과외"><meta property="og:locale" content="ko_KR"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta property="og:url" content="${canonical}"><meta property="og:image" content="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/assets/style.css"><script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": graph })}</script></head><body>${nav}${body}<div class="mobile-cta"><a href="tel:${phone}">전화 상담</a><a href="#contact">상담 신청</a></div></body></html>`;
 }
 
-const proof = `<div class="proof"><div class="wrap proof-grid"><div class="proof-item"><strong>1:1 맞춤 설계</strong><span>현재 실력부터 목표까지 개인별 진도</span></div><div class="proof-item"><strong>18개 시군 수업</strong><span>강원 전 지역 대면·온라인 상담</span></div><div class="proof-item"><strong>중등·고등 전문</strong><span>내신, 선행, 수능을 한 흐름으로 관리</span></div></div></div>`;
+function hero(title, copy, eyebrow = "Gangwon Private Math Coaching", crumbs = []) {
+  const breadcrumb = crumbs.length ? `<nav class="breadcrumb" aria-label="현재 위치">${crumbs.map(([name, url], index) => (index < crumbs.length - 1 ? `<a href="${url}">${name}</a>` : `<span>${name}</span>`)).join(" › ")}</nav>` : "";
+  return `<header class="hero"><div class="wrap hero-content">${breadcrumb}<p class="eyebrow">${eyebrow}</p><h1>${title}</h1><p class="hero-copy">${copy}</p><div class="hero-actions"><button type="button" class="button" onclick="window.openRegionModal && window.openRegionModal()">📍 지역 바로 선택</button><a class="button outline" href="#contact">무료 학습 상담</a><a class="button outline" href="tel:${phone}">${phone} 통화</a></div></div></header>`;
+}
+
+const proof = `<div class="proof"><div class="wrap proof-grid"><div class="proof-item"><strong>1:1 맞춤 설계</strong><span>현재 실력부터 목표까지 개인별 진도</span></div><div class="proof-item"><strong>18개 시군 수업</strong><span>강원 전 지역 방문·화상 수업 상담</span></div><div class="proof-item"><strong>초·중·고 전 학년</strong><span>기초수학, 내신, 수능을 한 흐름으로 관리</span></div></div></div>`;
 const process = `<section class="process" id="program"><div class="wrap"><div class="section-head"><h2>점수가 달라지는<br>수업의 순서</h2><p>문제를 더 많이 푸는 것보다 먼저 해야 할 일이 있습니다. 학생의 현재 위치를 정확히 확인하고, 이해와 반복이 필요한 지점을 찾아 수업을 설계합니다.</p></div><div class="steps"><article class="step"><span class="step-num">01 · 진단</span><h3>학습 상태 확인</h3><p>최근 시험지와 학습 이력을 바탕으로 개념, 연산, 문제 해석의 약점을 구분합니다.</p></article><article class="step"><span class="step-num">02 · 설계</span><h3>개인 커리큘럼</h3><p>학교 진도와 목표 성적, 가능한 학습 시간을 반영해 현실적인 계획을 세웁니다.</p></article><article class="step"><span class="step-num">03 · 수업</span><h3>개념과 적용 연결</h3><p>학생이 풀이 이유를 직접 설명하고 유사 문제에 적용할 수 있을 때까지 확인합니다.</p></article><article class="step"><span class="step-num">04 · 피드백</span><h3>학습 과정 관리</h3><p>오답과 과제 결과를 기록해 다음 수업에 반영하고 학부모님께 변화를 공유합니다.</p></article></div></div></section>`;
 const gradeSection = `<section class="grades" id="grade"><div class="wrap"><div class="section-head"><h2>학년이 바뀌기 전,<br>준비는 달라야 합니다</h2><p>예비 학년은 무조건 빠른 선행보다 이전 학년의 구멍을 찾아 다음 과정과 자연스럽게 연결하는 시기입니다.</p></div><div class="grade-grid">${gradeCards}</div></div></section>`;
-const regionsSection = `<section class="regions" id="region"><div class="wrap"><div class="section-head"><div><h2>우리 지역<br>수학과외 찾기</h2><p>강원특별자치도 18개 시군의 지역별 수업 안내를 확인하세요. 거주지와 일정에 따라 대면 또는 온라인 수업을 상담합니다.</p></div><button type="button" class="button outline" style="color:var(--forest);border-color:var(--forest);" onclick="window.openRegionModal && window.openRegionModal()">시·군·구 선택 팝업 열기</button></div><div class="region-grid">${regionLinks}</div></div></section>`;
+const regionsSection = `<section class="regions" id="region"><div class="wrap"><div class="section-head"><div><h2>우리 지역<br>수학과외 찾기</h2><p>강원특별자치도 18개 시군의 지역별 수업 안내를 확인하세요. 거주지와 일정에 따라 방문 또는 화상 수업을 상담합니다.</p></div><button type="button" class="button outline" style="color:var(--forest);border-color:var(--forest);" onclick="window.openRegionModal && window.openRegionModal()">시·군 선택 팝업 열기</button></div><div class="region-grid">${regionLinks}</div></div></section>`;
 const split = `<section class="split"><div class="split-image" role="img" aria-label="학생의 학습을 지도하는 수업 공간"></div><div class="split-copy"><p class="eyebrow">Study with direction</p><h2>혼자 공부하는 힘까지<br>함께 기릅니다</h2><p>과외 시간에만 풀 수 있는 문제는 오래 남지 않습니다. 문제를 읽고, 조건을 표시하고, 풀이를 검토하는 과정을 반복해 스스로 공부할 수 있는 기준을 만듭니다.</p><ul class="check-list"><li>학교별 시험 범위와 일정 반영</li><li>매 수업 오답 원인 기록</li><li>학생·학부모 정기 학습 피드백</li></ul></div></section>`;
-const contact = (region = "강원") => `<section class="contact" id="contact"><div class="wrap contact-inner"><div><h2>${region} 수학과외,<br>현재 고민부터 들려주세요</h2><p>학년, 지역, 원하는 수업 목표를 남겨주시면 상담을 도와드립니다.</p></div><a class="button" href="tel:010-0000-0000">전화 상담하기</a></div></section><footer><div class="wrap footer-inner"><div><div class="footer-brand">강원 수학과외</div><span>강원특별자치도 중·고등 맞춤 수학 지도</span></div><div>상호 및 연락처는 운영 정보 확정 후 표시됩니다.<br>© 2026 강원 수학과외. All rights reserved.</div></div></footer>`;
+const footerLinks = `<nav class="footer-links" aria-label="사이트 링크">${levels.map(level => `<a href="/${level.slug}/">강원 ${level.label} 수학과외</a>`).join("")}${regions.map(region => `<a href="/regions/${region.slug}/">${region.name} 수학과외</a>`).join("")}</nav>`;
+const contact = (label = "강원") => `<section class="contact" id="contact"><div class="wrap contact-inner"><div><h2>${label} 수학과외,<br>현재 고민부터 들려주세요</h2><p>학년, 지역, 원하는 수업 목표를 전화나 문자로 남겨주시면 무료 학습 상담을 도와드립니다.</p></div><a class="button" href="tel:${phone}">${phone}</a></div></section><footer><div class="wrap">${footerLinks}<div class="footer-inner"><div><div class="footer-brand">강원 수학과외</div><span>강원특별자치도 초등·중등·고등 1:1 맞춤 수학 지도</span></div><div>상담 전화 <a href="tel:${phone}">${phone}</a><br>© ${buildDate.getFullYear()} 강원 수학과외. All rights reserved.</div></div></div></footer>`;
+
+function faqSection(items, heading) {
+  return `<section class="faq" id="faq"><div class="wrap"><div class="section-head"><h2>${heading}</h2><p>상담 전에 학부모님과 학생들이 가장 많이 묻는 질문을 정리했습니다.</p></div><div class="faq-list">${items.map(([q, a], index) => `<details class="faq-item"${index === 0 ? " open" : ""}><summary>${q}</summary><p>${a}</p></details>`).join("")}</div></div></section>`;
+}
+
+function levelCards(ctx) {
+  return levels.map(level => `<a class="level-card" href="${levelPath(level, ctx)}"><small>${level.eyebrow}</small><h3>${ctx.name} ${level.label} 수학과외</h3><p>${level.card}</p><p class="topic-line">${level.topics.map(([topic]) => topic).join(" · ")}</p><span class="more">${ctx.name} ${level.label} 수학 자세히 보기 →</span></a>`).join("");
+}
+
+function levelSection(ctx) {
+  const gradeChips = levels.flatMap(level => level.grades.map(([grade]) => `<a class="chip" href="${levelPath(level, ctx)}#grade">${ctx.name} ${grade} 수학과외</a>`)).join("");
+  return `<section class="level-section" id="levels"><div class="wrap"><div class="section-head"><h2>${ctx.name} 초등·중등·고등<br>수학과외</h2><p>학교급마다 필요한 공부가 다릅니다. 초등은 기초수학과 연산 습관, 중등은 수학내신과 서술형, 고등은 내신과 수능수학을 함께 설계합니다.</p></div><div class="level-grid">${levelCards(ctx)}</div><h3 style="margin:40px 0 0;font-size:18px">학년별 ${ctx.name} 수학과외</h3><div class="chips">${gradeChips}</div></div></section>`;
+}
 
 function homePage() {
-  const description = "강원특별자치도 18개 시군 중등·고등 1:1 수학과외. 예비중1, 예비중2, 예비중3, 예비고1, 예비고2, 예비고3 맞춤 수업과 내신·선행·수능 관리.";
-  return layout({ title: "강원 수학과외 | 중등·고등 1:1 맞춤 수업", description, body: `${hero("강원 수학과외", "춘천부터 고성까지, 학생의 현재 실력과 학교 진도에 맞춘 중등·고등 1:1 수업. 이해에서 성적까지 이어지는 공부의 기준을 함께 만듭니다.")}${proof}${process}${gradeSection}${regionsSection}${split}${contact()}${renderRegionModal(true)}` });
+  const title = "강원 수학과외 | 초등·중등·고등 1:1 맞춤 수학수업";
+  const description = `강원 수학과외 - 춘천·원주·강릉 등 18개 시군 초등 기초수학, 중등 수학내신, 고등 수능수학까지 1:1 맞춤 수업. 예비중1~예비고3 학년별 관리, 무료 상담 ☎ ${phone}`;
+  const faq = faqItems([...commonFaq, ...levels.map(level => level.faq[0])], gangwon);
+  const body = `${hero("강원 수학과외", "춘천부터 고성까지, 학생의 현재 실력과 학교 진도에 맞춘 초등·중등·고등 1:1 수학수업. 기초수학부터 수학내신, 수능수학까지 이해에서 성적으로 이어지는 공부의 기준을 함께 만듭니다.")}${proof}${levelSection(gangwon)}${process}${gradeSection}${regionsSection}${split}${faqSection(faq, "강원 수학과외<br>자주 묻는 질문")}${contact()}${renderRegionModal(true)}`;
+  return layout({ title, description, body, faq });
 }
 
 function regionPage(region) {
-  const fullName = `${region.name}${region.type}`;
-  const description = `${fullName} 수학과외. ${region.areas} 중등·고등 1:1 맞춤 수업. 예비중1·예비중2·예비중3·예비고1·예비고2·예비고3 내신, 선행, 수능 준비.`;
-  const local = `<section class="local-intro"><div class="wrap local-copy"><div><p class="eyebrow">${fullName} LOCAL CLASS</p><h2>${fullName} 학생에게 맞는<br>현실적인 학습 계획</h2></div><div><p>${fullName} ${region.areas} 인근 학생을 대상으로 상담합니다. 지역과 학교에 따라 시험 일정과 학습 환경이 다른 만큼, 정해진 교재를 일률적으로 따라가기보다 최근 시험 결과와 목표를 먼저 확인합니다.</p><p>${region.focus}을 중심으로 수업하며, 대면 수업이 어려운 거리나 일정에는 온라인 수업을 함께 안내합니다. 예비중1부터 예비고3까지 학년 전환기의 복습과 선행, 재학생의 내신 대비, 고등학생의 수능 준비를 개인 진도에 맞춰 연결합니다.</p></div></div></section>`;
-  const body = `${hero(`${fullName}<br>수학과외`, `${region.areas}에서 만나는 중등·고등 1:1 맞춤 수업. ${region.focus}으로 공부의 방향을 분명하게 잡습니다.`, "GANGWON LOCAL MATH TUTORING", `${fullName} 수학과외`)}${proof}${local}${process}${gradeSection}${regionsSection}${contact(fullName)}${renderRegionModal(false)}`;
-  return layout({ title: `${fullName} 수학과외 | 예비중·예비고 1:1 맞춤 수업`, description, body, canonical: `${siteUrl}/regions/${region.slug}/` });
+  const ctx = regionContext(region);
+  const crumbs = [["홈", "/"], [`${region.name} 수학과외`, ctx.path]];
+  const title = `${region.name} 수학과외 | 초등·중등·고등 1:1 맞춤 수학수업`;
+  const description = `${region.name} 수학과외 - ${region.areas} 초등 기초수학, 중등 수학내신, 고등 수능수학까지 학년별 1:1 맞춤 수업. 방문·화상 수업 무료 상담 ☎ ${phone}`;
+  const faq = faqItems([...commonFaq, ...levels.map(level => level.faq[0])], ctx);
+  const local = `<section class="local-intro"><div class="wrap local-copy"><div><p class="eyebrow">${ctx.full} LOCAL CLASS</p><h2>${region.name} 학생에게 맞는<br>현실적인 학습 계획</h2></div><div><p>${ctx.full} ${region.areas} 인근 학생을 대상으로 ${region.name} 수학과외를 상담합니다. 지역과 학교에 따라 시험 일정과 학습 환경이 다른 만큼, 정해진 교재를 일률적으로 따라가기보다 최근 시험 결과와 목표를 먼저 확인합니다.</p><p>${withEul(region.focus)} 중심으로 수업하며, 방문 수업이 어려운 거리나 일정에는 화상 수업을 함께 안내합니다. ${region.name} 초등 수학은 기초수학과 연산 습관, ${region.name} 중등 수학은 학교별 수학내신, ${region.name} 고등 수학은 내신과 수능대비를 개인 진도에 맞춰 연결합니다.</p></div></div></section>`;
+  const body = `${hero(`${region.name}<br>수학과외`, `${region.areas}에서 만나는 초등·중등·고등 1:1 맞춤 수학수업. ${withRo(region.focus)} 공부의 방향을 분명하게 잡습니다.`, "GANGWON LOCAL MATH TUTORING", crumbs)}${proof}${local}${levelSection(ctx)}${process}${faqSection(faq, `${region.name} 수학과외<br>자주 묻는 질문`)}${regionsSection}${contact(region.name)}${renderRegionModal(false)}`;
+  return layout({ title, description, body, canonical: `${siteUrl}${ctx.path}`, crumbs, faq });
+}
+
+function levelPage(level, ctx) {
+  const name = ctx.name;
+  const path = levelPath(level, ctx);
+  const keyword = `${name} ${level.label} 수학과외`;
+  const crumbs = ctx.slug ? [["홈", "/"], [`${name} 수학과외`, ctx.path], [keyword, path]] : [["홈", "/"], [keyword, path]];
+  const title = `${keyword} | ${level.titleTail}`;
+  const description = `${keyword} - ${level.topics.map(([topic]) => `${level.label} ${topic}`).join("·")}. ${ctx.areas} ${level.student} 1:1 맞춤 수업, 무료 학습 상담 ☎ ${phone}`;
+  const faq = faqItems([...level.faq, ...commonFaq], ctx);
+  const intro = `<section class="local-intro"><div class="wrap local-copy"><div><p class="eyebrow">${level.eyebrow}</p><h2>${name} ${level.label} 수학,<br>지금 필요한 것부터</h2></div><div><p>${ctx.full} ${ctx.areas} 인근 ${level.student}을 위한 ${keyword}입니다. ${withRo(level.summary)}, 첫 상담에서 최근 시험지와 교재를 함께 보며 현재 위치를 확인합니다.</p><p>${withEul(ctx.focus)} 중심으로 ${name} ${level.label} ${withEul(level.topics.map(([topic]) => topic).join(", "))} 한 흐름으로 연결합니다. 방문 수업이 어려운 거리나 일정에는 화상 수업을 함께 안내합니다.</p></div></div></section>`;
+  const topics = `<section class="topics" id="topics"><div class="wrap"><div class="section-head"><h2>${name} ${level.label} 수학,<br>이렇게 수업합니다</h2><p>같은 수학과외라도 학생에게 필요한 것은 다릅니다. 수업, 공부 습관, 기초 보충${level.topics.length > 3 ? ", 시험 대비" : ""}를 나눠 설계합니다.</p></div><div class="topic-grid">${level.topics.map(([topic, text], index) => `<article class="topic"><small>${String(index + 1).padStart(2, "0")}</small><h3>${name} ${level.label} ${topic}</h3><p>${text}</p></article>`).join("")}</div></div></section>`;
+  const gradeBlock = `<section class="grades" id="grade"><div class="wrap"><div class="section-head"><h2>${name} 학년별<br>${level.label} 수학과외</h2><p>학년마다 배우는 단원과 시험의 성격이 다릅니다. 현재 학년의 핵심 단원을 기준으로 복습과 선행의 비중을 정합니다.</p></div><div class="grade-grid">${level.grades.map(([grade, text]) => `<article class="grade"><small>GRADE</small><h3>${name} ${grade} 수학과외</h3><p>${text}</p></article>`).join("")}</div></div></section>`;
+  const sameRegion = [
+    ...(ctx.slug ? [`<a class="chip" href="${ctx.path}">${name} 수학과외</a>`] : []),
+    ...levels.filter(other => other !== level).map(other => `<a class="chip" href="${levelPath(other, ctx)}">${name} ${other.label} 수학과외</a>`),
+    ...(ctx.slug ? [`<a class="chip" href="/${level.slug}/">강원 ${level.label} 수학과외</a>`] : [])
+  ].join("");
+  const otherRegions = regions.filter(region => region.slug !== ctx.slug).map(region => `<a class="chip" href="/regions/${region.slug}/${level.slug}/">${region.name} ${level.label} 수학</a>`).join("");
+  const related = `<section class="related"><div class="wrap"><h2>함께 찾는 ${name} 수학과외 정보</h2><div class="chips">${sameRegion}</div><h3>${ctx.slug ? "다른 지역" : "지역별"} ${level.label} 수학과외</h3><div class="chips">${otherRegions}</div></div></section>`;
+  const body = `${hero(`${name} ${level.label}<br>수학과외`, `${level.summary}. ${ctx.areas}에서 방문·화상으로 만나는 ${keyword}입니다.`, level.eyebrow, crumbs)}${proof}${intro}${topics}${gradeBlock}${process}${faqSection(faq, `${keyword}<br>자주 묻는 질문`)}${related}${contact(`${name} ${level.label}`)}${renderRegionModal(false)}`;
+  return layout({ title, description, body, canonical: `${siteUrl}${path}`, crumbs, faq });
+}
+
+const pages = [{ path: "/", priority: "1.0", html: homePage() }];
+for (const level of levels) pages.push({ path: `/${level.slug}/`, priority: "0.9", html: levelPage(level, gangwon) });
+for (const region of regions) {
+  pages.push({ path: `/regions/${region.slug}/`, priority: "0.8", html: regionPage(region) });
+  for (const level of levels) pages.push({ path: `/regions/${region.slug}/${level.slug}/`, priority: "0.7", html: levelPage(level, regionContext(region)) });
 }
 
 await rm(dist, { recursive: true, force: true });
 await mkdir(path.join(dist, "assets"), { recursive: true });
 await writeFile(path.join(dist, "assets", "logo.svg"), logo);
 await writeFile(path.join(dist, "assets", "style.css"), css);
-await writeFile(path.join(dist, "index.html"), homePage());
-for (const region of regions) {
-  const directory = path.join(dist, "regions", region.slug);
+for (const page of pages) {
+  const directory = path.join(dist, ...page.path.split("/").filter(Boolean));
   await mkdir(directory, { recursive: true });
-  await writeFile(path.join(directory, "index.html"), regionPage(region));
+  await writeFile(path.join(directory, "index.html"), page.html);
 }
-const urls = [siteUrl, ...regions.map(region => `${siteUrl}/regions/${region.slug}/`)];
-await writeFile(path.join(dist, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(url => `\n  <url><loc>${url}</loc><changefreq>weekly</changefreq><priority>${url === siteUrl ? "1.0" : "0.8"}</priority></url>`).join("")}\n</urlset>\n`);
+const meta = (html, name) => html.match(new RegExp(`<meta name="${name}" content="([^"]*)"`))[1];
+const pageTitle = html => html.match(/<title>([^<]*)<\/title>/)[1];
+const lastmod = buildDate.toISOString().slice(0, 10);
+await writeFile(path.join(dist, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${pages.map(page => `\n  <url><loc>${siteUrl}${page.path === "/" ? "" : page.path}</loc><lastmod>${lastmod}</lastmod><changefreq>weekly</changefreq><priority>${page.priority}</priority></url>`).join("")}\n</urlset>\n`);
+await writeFile(path.join(dist, "rss.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>강원 수학과외</title><link>${siteUrl}</link><description>강원특별자치도 18개 시군 초등·중등·고등 1:1 수학과외</description><language>ko</language><lastBuildDate>${buildDate.toUTCString()}</lastBuildDate>${pages.map(page => `\n<item><title>${escapeXml(pageTitle(page.html))}</title><link>${siteUrl}${page.path}</link><guid>${siteUrl}${page.path}</guid><description>${escapeXml(meta(page.html, "description"))}</description><pubDate>${buildDate.toUTCString()}</pubDate></item>`).join("")}\n</channel></rss>\n`);
 await writeFile(path.join(dist, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`);
 await writeFile(path.join(dist, "CNAME"), "studywin.kr\n");
 await writeFile(path.join(dist, ".nojekyll"), "");
-await writeFile(path.join(dist, "404.html"), layout({ title: "페이지를 찾을 수 없습니다 | 강원 수학과외", description: "요청하신 페이지를 찾을 수 없습니다.", body: `<main class="not-found"><div><p class="eyebrow">404 ERROR</p><h1>페이지를 찾을 수 없습니다</h1><p>주소가 변경되었거나 존재하지 않는 페이지입니다.</p><a class="button" href="/">홈으로 돌아가기</a></div></main>` }));
-console.log(`Built ${regions.length + 1} pages in ${dist}`);
+await writeFile(path.join(dist, "404.html"), layout({ title: "페이지를 찾을 수 없습니다 | 강원 수학과외", description: "요청하신 페이지를 찾을 수 없습니다.", body: `<main class="not-found"><div><p class="eyebrow">404 ERROR</p><h1>페이지를 찾을 수 없습니다</h1><p>주소가 변경되었거나 존재하지 않는 페이지입니다.</p><a class="button" href="/">홈으로 돌아가기</a></div></main>` }).replace('content="index,follow,max-image-preview:large"', 'content="noindex"'));
+console.log(`Built ${pages.length} pages in ${dist}`);
