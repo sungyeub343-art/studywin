@@ -1,4 +1,4 @@
-import { mkdir, rm, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -38,6 +38,11 @@ const grades = [
 ];
 
 const phone = "010-2928-3614";
+
+// 출처: 전국초중등학교위치표준데이터(한국교육시설안전원, 2026-10-01 기준)에서 강원 시군별 운영 중인 학교를 추출
+const schools = JSON.parse(await readFile(path.join(root, "data", "schools-gangwon.json"), "utf8"));
+const schoolSource = "전국초중등학교위치표준데이터(2026년 10월 기준)";
+const schoolWords = { elementary: "초등학교", middle: "중학교", high: "고등학교" };
 const buildDate = new Date();
 
 // 학교급별 키워드 페이지: "지역명 + 초등/중등/고등 + 수학/수학수업/수학공부/기초수학/수학내신/수능대비/수능수학"
@@ -266,6 +271,7 @@ const css = `@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:
 .faq{background:var(--paper)}.faq-list{border-top:1px solid var(--ink)}.faq-item{border-bottom:1px solid var(--line)}.faq-item summary{cursor:pointer;padding:20px 0;font-weight:700;font-size:17px;list-style:none}.faq-item summary::-webkit-details-marker{display:none}.faq-item summary:before{content:"Q.";color:var(--leaf);margin-right:10px}.faq-item p{color:var(--muted);margin:0 0 20px;padding-left:30px}
 .related{background:#eef0e9;padding:72px 0}.related h2{font-family:"Gowun Batang",serif;font-size:clamp(26px,3vw,34px);margin-bottom:0}.related h3{font-size:16px;margin:30px 0 0}
 .article{background:#fff}.article-body{max-width:780px}.article-body h2{font-family:"Gowun Batang",serif;font-size:clamp(26px,3vw,34px);line-height:1.3;margin:56px 0 16px}.article-body h2:first-child{margin-top:0}.article-body p{color:var(--muted);font-size:17px}.article-body .check-list{margin:0 0 8px}
+.school-list{list-style:none;padding:0;margin:16px 0 0}.school-list .chip:hover{border-color:var(--line);color:inherit}#schools h3 a:hover{color:var(--forest)}.school-source{margin:28px 0 0;font-size:13px;color:var(--muted)}
 .footer-links{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:26px;padding-bottom:26px;border-bottom:1px solid rgba(255,255,255,.12);font-size:13px}.footer-links a:hover{color:#fff}
 @media(max-width:900px){.topic-grid,.level-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.topic-grid,.level-grid{grid-template-columns:1fr}.faq-item summary{font-size:16px}.faq-item p{padding-left:0}footer{padding-bottom:90px}}`;
@@ -434,8 +440,29 @@ function regionPage(region) {
   const description = `${region.name} 수학과외 - ${region.areas} 초등 기초수학, 중등 수학내신, 고등 수능수학까지 학년별 1:1 맞춤 수업. 방문·화상 수업 무료 상담 ☎ ${phone}`;
   const faq = faqItems([...commonFaq, ...levels.map(level => level.faq[0])], ctx);
   const local = `<section class="local-intro"><div class="wrap local-copy"><div><p class="eyebrow">${ctx.full} LOCAL CLASS</p><h2>${region.name} 학생에게 맞는<br>현실적인 학습 계획</h2></div><div><p>${ctx.full} ${region.areas} 인근 학생을 대상으로 ${region.name} 수학과외를 상담합니다. 지역과 학교에 따라 시험 일정과 학습 환경이 다른 만큼, 정해진 교재를 일률적으로 따라가기보다 최근 시험 결과와 목표를 먼저 확인합니다.</p><p>${withEul(region.focus)} 중심으로 수업하며, 방문 수업이 어려운 거리나 일정에는 화상 수업을 함께 안내합니다. ${region.name} 초등 수학은 기초수학과 연산 습관, ${region.name} 중등 수학은 학교별 수학내신, ${region.name} 고등 수학은 내신과 수능대비를 개인 진도에 맞춰 연결합니다.</p></div></div></section>`;
-  const body = `${hero(`${region.name}<br>수학과외`, `${region.areas}에서 만나는 초등·중등·고등 1:1 맞춤 수학수업. ${withRo(region.focus)} 공부의 방향을 분명하게 잡습니다.`, "GANGWON LOCAL MATH TUTORING", crumbs)}${proof}${local}${levelSection(ctx)}${process}${faqSection(faq, `${region.name} 수학과외<br>자주 묻는 질문`)}${regionsSection}${contact(region.name)}${renderRegionModal(false)}`;
+  const body = `${hero(`${region.name}<br>수학과외`, `${region.areas}에서 만나는 초등·중등·고등 1:1 맞춤 수학수업. ${withRo(region.focus)} 공부의 방향을 분명하게 잡습니다.`, "GANGWON LOCAL MATH TUTORING", crumbs)}${proof}${local}${levelSection(ctx)}${schoolSection(ctx, levels)}${process}${faqSection(faq, `${region.name} 수학과외<br>자주 묻는 질문`)}${regionsSection}${contact(region.name)}${renderRegionModal(false)}`;
   return layout({ title, description, body, canonical: `${siteUrl}${ctx.path}`, crumbs, faq });
+}
+
+function schoolSummary(list, ctx, level) {
+  const word = schoolWords[level.slug];
+  return list.length === 1 ? `${ctx.full} ${list[0]}` : `${list.slice(0, 3).join(", ")} 등 ${ctx.full} ${list.length}개 ${word}`;
+}
+
+function schoolSection(ctx, levelList) {
+  const groups = levelList.filter(level => schools[ctx.slug]?.[level.slug]?.length);
+  if (!groups.length) return "";
+  const single = groups.length === 1 ? groups[0] : null;
+  const heading = single ? `${ctx.name} ${schoolWords[single.slug]}<br>수학과외` : `${ctx.name} 학교별<br>수학과외`;
+  const lead = single
+    ? `${schoolSummary(schools[ctx.slug][single.slug], ctx, single)} 학생을 대상으로 수업합니다. 학교마다 교과서와 ${single.slug === "elementary" ? "단원평가 방식" : "시험 출제 경향"}이 다르므로 다니는 학교의 최근 시험지와 진도를 바탕으로 수업을 설계합니다.`
+    : `${ctx.full}의 초등학교, 중학교, 고등학교 학생을 대상으로 수업합니다. 학교마다 교과서와 시험 범위가 다르므로 다니는 학교의 최근 시험지와 진도를 먼저 확인합니다.`;
+  const lists = groups.map(level => {
+    const list = schools[ctx.slug][level.slug];
+    const title = single ? "" : `<h3><a href="${levelPath(level, ctx)}">${ctx.name} ${schoolWords[level.slug]} 수학과외</a> <small style="color:var(--muted);font-weight:600">${list.length}개교</small></h3>`;
+    return `${title}<ul class="chips school-list">${list.map(school => `<li class="chip">${school}</li>`).join("")}</ul>`;
+  }).join("");
+  return `<section class="related" id="schools"><div class="wrap"><div class="section-head"><h2>${heading}</h2><p>${lead}</p></div>${lists}<p class="school-source">학교 목록 출처: ${schoolSource}</p></div></section>`;
 }
 
 function levelPage(level, ctx) {
@@ -445,8 +472,10 @@ function levelPage(level, ctx) {
   const crumbs = ctx.slug ? [["홈", "/"], [`${name} 수학과외`, ctx.path], [keyword, path]] : [["홈", "/"], [keyword, path]];
   const title = `${keyword} | ${level.titleTail}`;
   const description = `${keyword} - ${level.topics.map(([topic]) => `${level.label} ${topic}`).join("·")}. ${ctx.areas} ${level.student} 1:1 맞춤 수업, 무료 학습 상담 ☎ ${phone}`;
-  const faq = faqItems([...level.faq, ...commonFaq], ctx);
-  const intro = `<section class="local-intro"><div class="wrap local-copy"><div><p class="eyebrow">${level.eyebrow}</p><h2>${name} ${level.label} 수학,<br>지금 필요한 것부터</h2></div><div><p>${ctx.full} ${ctx.areas} 인근 ${level.student}을 위한 ${keyword}입니다. ${withRo(level.summary)}, 첫 상담에서 최근 시험지와 교재를 함께 보며 현재 위치를 확인합니다.</p><p>${withEul(ctx.focus)} 중심으로 ${name} ${level.label} ${withEul(level.topics.map(([topic]) => topic).join(", "))} 한 흐름으로 연결합니다. 방문 수업이 어려운 거리나 일정에는 화상 수업을 함께 안내합니다.</p></div></div></section>`;
+  const schoolList = ctx.slug ? schools[ctx.slug]?.[level.slug] ?? [] : [];
+  const schoolFaq = schoolList.length ? [[`${name} ${schoolWords[level.slug]} 학교별 ${level.slug === "elementary" ? "진도" : "시험 범위"}에 맞춰 수업하나요?`, `네. ${schoolSummary(schoolList, ctx, level)} 학생의 교과서와 ${level.slug === "elementary" ? "단원평가 일정" : "시험 범위, 기출 경향"}을 확인해 학교별로 수업을 준비합니다.`]] : [];
+  const faq = faqItems([...level.faq, ...schoolFaq, ...commonFaq], ctx);
+  const intro =`<section class="local-intro"><div class="wrap local-copy"><div><p class="eyebrow">${level.eyebrow}</p><h2>${name} ${level.label} 수학,<br>지금 필요한 것부터</h2></div><div><p>${ctx.full} ${ctx.areas} 인근 ${level.student}을 위한 ${keyword}입니다. ${withRo(level.summary)}, 첫 상담에서 최근 시험지와 교재를 함께 보며 현재 위치를 확인합니다.</p><p>${withEul(ctx.focus)} 중심으로 ${name} ${level.label} ${withEul(level.topics.map(([topic]) => topic).join(", "))} 한 흐름으로 연결합니다. 방문 수업이 어려운 거리나 일정에는 화상 수업을 함께 안내합니다.</p></div></div></section>`;
   const topics = `<section class="topics" id="topics"><div class="wrap"><div class="section-head"><h2>${name} ${level.label} 수학,<br>이렇게 수업합니다</h2><p>같은 수학과외라도 학생에게 필요한 것은 다릅니다. 수업, 공부 습관, 기초 보충${level.topics.length > 3 ? ", 시험 대비" : ""}를 나눠 설계합니다.</p></div><div class="topic-grid">${level.topics.map(([topic, text], index) => `<article class="topic"><small>${String(index + 1).padStart(2, "0")}</small><h3>${name} ${level.label} ${topic}</h3><p>${text}</p></article>`).join("")}</div></div></section>`;
   const gradeBlock = `<section class="grades" id="grade"><div class="wrap"><div class="section-head"><h2>${name} 학년별<br>${level.label} 수학과외</h2><p>학년마다 배우는 단원과 시험의 성격이 다릅니다. 현재 학년의 핵심 단원을 기준으로 복습과 선행의 비중을 정합니다.</p></div><div class="grade-grid">${level.grades.map(([grade, text]) => `<article class="grade"><small>GRADE</small><h3>${name} ${grade} 수학과외</h3><p>${text}</p></article>`).join("")}</div></div></section>`;
   const sameRegion = [
@@ -456,7 +485,7 @@ function levelPage(level, ctx) {
   ].join("");
   const otherRegions = regions.filter(region => region.slug !== ctx.slug).map(region => `<a class="chip" href="/regions/${region.slug}/${level.slug}/">${region.name} ${level.label} 수학</a>`).join("");
   const related = `<section class="related"><div class="wrap"><h2>함께 찾는 ${name} 수학과외 정보</h2><div class="chips">${sameRegion}</div><h3>${ctx.slug ? "다른 지역" : "지역별"} ${level.label} 수학과외</h3><div class="chips">${otherRegions}</div><h3>수학 학습 가이드</h3><div class="chips">${guideChips()}</div></div></section>`;
-  const body = `${hero(`${name} ${level.label}<br>수학과외`, `${level.summary}. ${ctx.areas}에서 방문·화상으로 만나는 ${keyword}입니다.`, level.eyebrow, crumbs)}${proof}${intro}${topics}${gradeBlock}${process}${faqSection(faq, `${keyword}<br>자주 묻는 질문`)}${related}${contact(`${name} ${level.label}`)}${renderRegionModal(false)}`;
+  const body = `${hero(`${name} ${level.label}<br>수학과외`, `${level.summary}. ${ctx.areas}에서 방문·화상으로 만나는 ${keyword}입니다.`, level.eyebrow, crumbs)}${proof}${intro}${ctx.slug ? schoolSection(ctx, [level]) : ""}${topics}${gradeBlock}${process}${faqSection(faq, `${keyword}<br>자주 묻는 질문`)}${related}${contact(`${name} ${level.label}`)}${renderRegionModal(false)}`;
   return layout({ title, description, body, canonical: `${siteUrl}${path}`, crumbs, faq });
 }
 
