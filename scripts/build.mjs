@@ -227,6 +227,180 @@ const guides = [
   }
 ];
 
+// 학년별 키워드 페이지 (/grade/{slug}/)
+const gradePages = [
+  {
+    slug: "elementary-lower", level: "elementary", keyword: "강원 초등 저학년 수학과외", short: "초등 저학년 수학",
+    title: "강원 초등 저학년 수학과외 | 초1·초2·초3 연산과 수 감각 1:1",
+    eyebrow: "GRADE 1-3",
+    lead: "초1부터 초3까지는 수학 실력보다 수학을 대하는 습관이 만들어지는 시기입니다. 수 감각과 연산 원리를 놀이처럼 익히고, 문제를 끝까지 읽는 습관을 들이는 초등 저학년 1:1 수학수업입니다.",
+    card: "초1~초3 수 감각, 덧셈·뺄셈과 곱셈구구, 첫 분수 개념을 원리부터 익히는 저학년 수업입니다.",
+    sections: [
+      { h: "초등 저학년 수학에서 배우는 것", p: ["저학년 수학은 단원 수가 적어 보여도 이후 모든 학년의 계산 기초가 됩니다."], list: ["초1: 100까지의 수, 덧셈과 뺄셈, 여러 가지 모양, 시계 보기", "초2: 세 자리·네 자리 수, 받아올림·받아내림, 곱셈구구, 길이 재기", "초3: 세 자리 수의 덧셈·뺄셈, 곱셈과 나눗셈, 분수와 소수의 첫 개념, 평면도형"] },
+      { h: "계산을 빨리 하는 것보다 중요한 것", p: ["저학년 때 계산 속도만 연습하면 받아올림이나 나눗셈의 원리를 모른 채 외워서 푸는 습관이 생깁니다. 수 모형과 그림으로 원리를 먼저 보여 주고, 학생이 왜 그렇게 계산했는지 말로 설명할 수 있을 때 다음 단계로 넘어갑니다."] },
+      { h: "짧고 자주, 집중하는 수업", p: ["저학년은 집중 시간이 짧기 때문에 한 수업을 개념, 손으로 풀기, 말로 설명하기의 짧은 단위로 나눕니다. 수업 후에는 하루 10~20분 분량의 과제를 정해 매일 수학을 만나는 습관을 만듭니다."] },
+      { h: "초3이 중요한 이유", p: ["초3에서는 곱셈·나눗셈과 분수가 처음 등장합니다. 이 시기에 개념을 놓치면 초4~초5의 분수 계산과 문장제에서 어려움이 커지므로, 초3 1학기부터 원리 이해를 꼼꼼히 확인합니다."] }
+    ],
+    faq: [
+      ["초1·초2도 1:1 수학과외가 필요한가요?", "모든 학생에게 필요하지는 않습니다. 계산 실수가 반복되거나 수학을 싫어하기 시작했다면 짧은 수업으로 습관을 바로잡는 것이 도움이 됩니다. 상담에서 현재 상태를 보고 솔직하게 안내해 드립니다."],
+      ["학습지와 무엇이 다른가요?", "학습지는 정해진 분량을 반복하는 방식이고, 1:1 수업은 학생이 틀린 이유를 그 자리에서 확인하고 설명 방식을 바꿀 수 있다는 점이 다릅니다."]
+    ]
+  },
+  {
+    slug: "elementary-upper", level: "elementary", keyword: "강원 초등 고학년 수학과외", short: "초등 고학년 수학",
+    title: "강원 초등 고학년 수학과외 | 초4·초5·초6 분수·문장제 1:1",
+    eyebrow: "GRADE 4-6",
+    lead: "초4부터 초6까지는 분수 계산과 문장제가 본격적으로 어려워지는 시기입니다. 중학 수학으로 이어지는 핵심 단원을 빈틈없이 다지는 초등 고학년 1:1 수학과외입니다.",
+    card: "초4~초6 분수·소수 계산, 약수와 배수, 비와 비율, 문장제를 중학 수학과 연결해 다집니다.",
+    sections: [
+      { h: "초등 고학년 핵심 단원", p: ["고학년 단원은 대부분 중학교 1학년 수학과 직접 연결됩니다."], list: ["초4: 큰 수, 곱셈과 나눗셈, 분수의 덧셈·뺄셈, 각도와 삼각형·사각형", "초5: 약수와 배수, 약분과 통분, 분수의 곱셈, 소수의 곱셈, 직육면체", "초6: 분수·소수의 나눗셈, 비와 비율, 비례식과 비례배분, 원의 넓이, 입체도형"] },
+      { h: "분수에서 가장 많이 막힙니다", p: ["약분과 통분, 분수의 곱셈·나눗셈은 중학교 정수와 유리수, 방정식 계산의 바탕입니다. 분수 계산에서 실수가 잦다면 그 원인이 곱셈구구인지, 약수·배수 개념인지 거슬러 올라가 확인하고 보충합니다."] },
+      { h: "문장제는 읽는 법부터", p: ["문장제를 어려워하는 학생은 계산보다 문제를 식으로 바꾸는 단계에서 막힙니다. 조건에 밑줄을 긋고, 구하는 것을 먼저 쓰고, 그림이나 표로 정리하는 순서를 매 수업 반복합니다."] },
+      { h: "초6 2학기부터는 중학 준비", p: ["초6 2학기에는 학교 진도를 마무리하면서 정수와 유리수, 문자와 식의 기초를 미리 경험하게 합니다. 무리한 선행보다 초등 내용을 정리하는 데 더 많은 시간을 씁니다."] }
+    ],
+    faq: [
+      ["초등 고학년에 선행을 해야 하나요?", "현재 학년 분수 계산과 문장제가 안정적이라면 초6 겨울방학 전후로 중1 내용을 시작해도 충분합니다. 기초가 흔들리면 선행보다 보충이 우선입니다."],
+      ["경시나 심화 문제도 다루나요?", "학생의 수준과 목표에 따라 교과 심화 문제를 함께 다룹니다. 다만 개념 이해가 먼저 확인된 뒤에 진행합니다."]
+    ]
+  },
+  {
+    slug: "pre-middle-1", level: "middle", keyword: "강원 예비중1 수학과외", short: "예비중1 수학",
+    title: "강원 예비중1 수학과외 | 초6 겨울방학 중1 수학 준비 1:1",
+    eyebrow: "PRE-MIDDLE 1",
+    lead: "초등 수학과 중학 수학은 문제의 모양부터 다릅니다. 숫자 대신 문자를 쓰고, 음수가 등장하고, 풀이 과정을 써야 합니다. 예비중1 시기에 이 변화를 미리 경험하게 하는 1:1 수업입니다.",
+    card: "초등 분수·소수 점검 후 정수와 유리수, 문자와 식으로 중학 수학의 첫 틀을 만듭니다.",
+    sections: [
+      { h: "중학 수학에서 달라지는 것", p: ["예비중1 학생이 가장 당황하는 부분은 계산 자체보다 표현 방식의 변화입니다."], list: ["음수와 정수, 유리수의 등장", "숫자 대신 문자를 쓰는 식과 방정식", "답만이 아니라 풀이 과정을 쓰는 서술형 평가", "단원평가 대신 중간·기말 지필고사(학교에 따라 자유학기 운영)"] },
+      { h: "초등 내용 점검이 먼저입니다", p: ["중1 정수와 유리수 계산은 초등 분수·소수 계산을 그대로 사용합니다. 예비중1 수업은 초5~초6 분수 계산과 약수·배수를 빠르게 점검하는 것부터 시작합니다."] },
+      { h: "겨울방학 예비중1 진도", p: ["방학 동안 중1 1학기 앞부분까지를 목표로 합니다."], list: ["1~2주: 초등 분수·소수, 약수와 배수 점검", "3~5주: 소인수분해, 정수와 유리수의 계산", "6~8주: 문자의 사용과 식의 계산, 일차방정식 기초"] },
+      { h: "풀이를 쓰는 습관", p: ["중학교부터는 답이 맞아도 풀이가 없으면 점수를 받기 어렵습니다. 예비중1부터 한 줄에 한 단계씩 식을 정리해 쓰는 습관을 들여 중1 첫 시험부터 서술형에 대비합니다."] }
+    ],
+    faq: [
+      ["예비중1은 언제 시작하면 좋나요?", "초6 2학기 기말 이후, 겨울방학 시작 전에 상담하시면 방학 전체를 계획적으로 쓸 수 있습니다."],
+      ["중1 자유학기에도 수학 공부를 해야 하나요?", "시험 부담이 적은 시기일수록 개념을 탄탄하게 쌓기 좋습니다. 중1 내용이 중2·중3 수학의 기초가 되므로 꾸준한 학습을 권합니다."]
+    ]
+  },
+  {
+    slug: "middle-1", level: "middle", keyword: "강원 중1 수학과외", short: "중1 수학",
+    title: "강원 중1 수학과외 | 정수와 유리수·일차방정식 1:1 맞춤",
+    eyebrow: "MIDDLE 1",
+    lead: "중1 수학은 중학교 3년 수학의 출발점입니다. 정수와 유리수, 문자와 식, 일차방정식을 정확하게 익히고 중학교 시험 방식에 적응하도록 돕는 중1 1:1 수학과외입니다.",
+    card: "정수와 유리수, 일차방정식, 좌표평면과 그래프, 도형과 통계까지 중1 수학을 단원별로 다집니다.",
+    sections: [
+      { h: "중1 수학 주요 단원", p: ["중1에서 배우는 내용은 크게 수와 연산, 문자와 식, 함수, 도형, 통계로 나뉩니다."], list: ["소인수분해", "정수와 유리수의 계산", "문자의 사용과 식의 계산, 일차방정식", "좌표평면과 그래프, 정비례와 반비례", "기본 도형, 평면도형과 입체도형의 성질", "자료의 정리와 해석(통계)"] },
+      { h: "중1이 가장 많이 틀리는 곳", p: ["음수가 포함된 계산의 부호 실수, 괄호를 풀 때의 분배법칙 실수, 일차방정식의 이항 실수가 가장 흔합니다. 이런 실수는 문제를 많이 푼다고 줄지 않기 때문에 틀린 유형을 기록하고 같은 유형을 반복 확인합니다."] },
+      { h: "첫 중학교 시험 준비", p: ["자유학기 이후 처음 보는 지필고사는 시험 범위가 넓고 서술형 비중이 있어 당황하기 쉽습니다. 학교별 시험 범위에 맞춰 4주 계획을 세우고, 서술형 풀이 쓰기를 미리 연습합니다."] },
+      { h: "중2로 이어지는 연결", p: ["중1 일차방정식과 좌표평면은 중2 연립방정식과 일차함수로 바로 이어집니다. 중1 겨울방학에는 이 두 단원을 중심으로 복습하며 중2 1학기를 준비합니다."] }
+    ],
+    faq: [
+      ["중1인데 고등 선행을 해야 하나요?", "중1에게는 중학 과정의 개념 완성이 더 중요합니다. 현재 학년이 매우 안정적인 경우에 한해 선행 범위를 상담합니다."],
+      ["수학 성적은 괜찮은데 서술형이 약해요.", "풀이 과정을 단계별로 쓰는 연습과 감점 사례 분석으로 서술형을 따로 관리합니다."]
+    ]
+  },
+  {
+    slug: "middle-2", level: "middle", keyword: "강원 중2 수학과외", short: "중2 수학",
+    title: "강원 중2 수학과외 | 연립방정식·일차함수·도형 1:1 맞춤",
+    eyebrow: "MIDDLE 2",
+    lead: "중2는 중학 수학에서 성적 차이가 가장 크게 벌어지는 학년입니다. 일차함수와 도형의 증명처럼 처음 마주하는 개념이 많아, 이 시기를 잘 넘기는 것이 고등 수학의 기반이 됩니다.",
+    card: "식의 계산, 연립방정식, 일차함수, 도형의 성질과 닮음까지 중2 수학 핵심을 1:1로 관리합니다.",
+    sections: [
+      { h: "중2 수학 주요 단원", p: ["중2는 대수와 기하 모두에서 난도가 한 단계 올라갑니다."], list: ["유리수와 순환소수", "식의 계산(지수법칙, 다항식의 계산)", "일차부등식과 연립일차방정식", "일차함수와 그래프, 일차함수와 일차방정식의 관계", "삼각형과 사각형의 성질, 도형의 닮음, 피타고라스 정리", "경우의 수와 확률"] },
+      { h: "일차함수가 고비입니다", p: ["일차함수는 식, 표, 그래프를 오가며 생각해야 해서 많은 학생이 처음으로 수학이 어렵다고 느끼는 단원입니다. 기울기와 절편의 의미를 그래프로 직접 그려 보며 이해하게 하고, 이후 고등 함수 단원까지 이어지는 사고 방식을 만듭니다."] },
+      { h: "도형 증명과 서술형", p: ["2학기 도형 단원에서는 이유를 논리적으로 설명하는 증명이 등장합니다. 조건과 결론을 구분하고, 근거가 되는 성질을 쓰는 순서를 정해 서술형에서 감점되지 않도록 연습합니다."] },
+      { h: "중2 겨울방학이 중요한 이유", p: ["중3 1학기에는 인수분해, 이차방정식, 이차함수가 연이어 나옵니다. 중2 식의 계산과 일차함수가 흔들리면 중3에서 크게 막히므로, 겨울방학에 두 단원을 다시 점검합니다."] }
+    ],
+    faq: [
+      ["중2 때 성적이 갑자기 떨어졌어요.", "일차함수, 연립방정식, 도형의 증명 중 어디에서 막혔는지 먼저 진단합니다. 원인이 중1 내용이라면 해당 부분만 짧게 보충하고 바로 중2 진도로 돌아옵니다."],
+      ["중2에 고등 수학 선행을 시작해도 될까요?", "중2 내용이 안정적이라면 중2 겨울방학부터 중3 과정과 함께 고등 공통수학을 조금씩 준비할 수 있습니다."]
+    ]
+  },
+  {
+    slug: "middle-3", level: "middle", keyword: "강원 중3 수학과외", short: "중3 수학",
+    title: "강원 중3 수학과외 | 인수분해·이차함수·고등 준비 1:1 맞춤",
+    eyebrow: "MIDDLE 3",
+    lead: "중3 수학은 고등 수학과 가장 가까운 학년입니다. 인수분해, 이차방정식, 이차함수를 확실하게 다지고, 고등학교 공통수학으로 자연스럽게 넘어가도록 준비하는 중3 1:1 수학과외입니다.",
+    card: "제곱근과 실수, 인수분해, 이차방정식·이차함수, 삼각비를 완성하고 고등 공통수학을 준비합니다.",
+    sections: [
+      { h: "중3 수학 주요 단원", p: ["중3 단원은 거의 모두 고등 수학에서 다시 쓰입니다."], list: ["제곱근과 실수, 근호를 포함한 식의 계산", "다항식의 곱셈과 인수분해", "이차방정식과 이차함수", "삼각비", "원의 성질", "대푯값과 산포도, 상관관계"] },
+      { h: "인수분해와 이차함수는 반드시 완성", p: ["고등학교 1학년 공통수학의 다항식, 방정식과 부등식 단원은 중3 인수분해와 이차함수를 전제로 합니다. 고등 수학이 어렵다는 학생 대부분이 이 두 단원에서 빈틈이 있기 때문에, 중3 수업에서는 이 단원을 특히 꼼꼼하게 반복합니다."] },
+      { h: "중3 2학기 이후 계획", p: ["중3 2학기 기말고사가 끝나면 중학 전 범위를 진단하고, 예비고1 과정으로 넘어갑니다."], list: ["중학 전 범위 취약 단원 점검", "고등 공통수학 다항식·방정식 시작", "고등학교 첫 시험과 첫 모의고사 준비 방법 안내"] },
+      { h: "고입과 내신", p: ["진학하려는 고등학교 유형에 따라 중3 내신 관리의 중요도가 다릅니다. 상담에서 진학 계획을 함께 확인하고 내신과 고등 준비의 비중을 정합니다."] }
+    ],
+    faq: [
+      ["중3인데 고등 선행을 얼마나 해야 하나요?", "중3 내용이 안정적이라면 겨울방학까지 공통수학의 다항식, 방정식과 부등식 단원을 마치는 것을 목표로 합니다. 중학 내용에 빈틈이 있다면 보충을 먼저 합니다."],
+      ["중3 2학기 내신도 챙겨야 하나요?", "진학하려는 학교에 따라 중요할 수 있습니다. 진학 계획을 확인해 내신과 선행의 비중을 함께 정합니다."]
+    ]
+  },
+  {
+    slug: "pre-high-1", level: "high", keyword: "강원 예비고1 수학과외", short: "예비고1 수학",
+    title: "강원 예비고1 수학과외 | 중3 겨울방학 공통수학 준비 1:1",
+    eyebrow: "PRE-HIGH 1",
+    lead: "예비고1 겨울방학은 고등학교 3년 수학의 방향을 정하는 시간입니다. 중학 수학의 빈틈을 정리하고 공통수학의 첫 단원을 안정적으로 시작하는 예비고1 1:1 수학과외입니다.",
+    card: "중학 전 범위 진단 후 공통수학 다항식, 방정식과 부등식, 경우의 수를 체계적으로 시작합니다.",
+    sections: [
+      { h: "고등 수학은 이렇게 달라집니다", p: ["고등학교 수학은 범위가 넓고 진도가 빠르며, 한 문제 안에 여러 단원의 개념이 함께 쓰입니다. 고1 첫 시험과 첫 모의고사에서 많은 학생이 중학교 때보다 크게 낮은 점수를 받는 이유입니다."] },
+      { h: "예비고1 겨울방학 계획", p: ["방학 기간과 학생 상태에 따라 조정하지만, 기본 흐름은 다음과 같습니다."], list: ["1~2주: 중학 인수분해, 이차방정식, 이차함수 점검", "3~6주: 공통수학 다항식의 연산, 나머지정리, 인수분해", "7~10주: 복소수와 이차방정식, 이차방정식과 이차함수, 여러 가지 방정식과 부등식", "여유가 있으면: 경우의 수, 행렬 기초"] },
+      { h: "개념서 한 권을 끝까지", p: ["예비고1 시기에 여러 교재를 조금씩 푸는 것보다 개념서 한 권과 유형서 한 권을 끝까지 완성하는 것이 효과적입니다. 수업에서는 개념 설명과 함께 학생이 혼자 복습할 수 있는 노트 정리 방법도 함께 익힙니다."] },
+      { h: "고등학교 공부 습관", p: ["고등학교에서는 수업 시간 외 혼자 공부하는 시간이 성적을 결정합니다. 예비고1부터 주간 계획표와 오답 노트를 쓰는 습관을 들여 입학 후 바로 적용할 수 있게 합니다."] }
+    ],
+    faq: [
+      ["예비고1 선행은 어디까지 해야 하나요?", "최소한 공통수학 1학기 범위(다항식, 방정식과 부등식)를 탄탄하게 하는 것을 권합니다. 무리하게 범위를 넓히기보다 첫 시험 범위를 완성하는 것이 우선입니다."],
+      ["중학 수학이 약한데 바로 고등 과정을 해도 되나요?", "중학 단원 중 고등 수학에 직접 필요한 인수분해, 이차함수 등을 먼저 짧게 보충한 뒤 고등 과정으로 넘어갑니다."]
+    ]
+  },
+  {
+    slug: "high-1", level: "high", keyword: "강원 고1 수학과외", short: "고1 수학",
+    title: "강원 고1 수학과외 | 공통수학1·2 내신과 첫 모의고사 1:1",
+    eyebrow: "HIGH 1",
+    lead: "고1 수학은 공통수학1·2로 고등학교 수학 전체의 기초를 만드는 과정입니다. 학교별 내신과 첫 모의고사를 함께 준비하는 고1 1:1 수학과외입니다.",
+    card: "공통수학1·2 학교별 내신과 첫 모의고사 대비, 고등 수학 공부 습관을 함께 잡습니다.",
+    sections: [
+      { h: "고1 공통수학 주요 단원", p: ["고1은 한 해 동안 공통수학1과 공통수학2를 배웁니다."], list: ["공통수학1: 다항식, 방정식과 부등식, 경우의 수, 행렬", "공통수학2: 도형의 방정식, 집합과 명제, 함수와 그래프"] },
+      { h: "고1 내신 대비", p: ["고등학교 내신은 학교마다 교과서, 부교재, 출제 난도가 크게 다릅니다. 학교 기출과 부교재를 중심으로 시험 4주 전부터 범위별 계획을 세우고, 고난도 문항과 서술형에서 점수를 지키는 연습을 합니다."] },
+      { h: "첫 모의고사 이후", p: ["고1 첫 모의고사는 중학 내용과 고1 초반 범위에서 출제되지만, 시간 압박 때문에 실력보다 낮은 점수가 나오기 쉽습니다. 결과로 실수 유형과 취약 단원을 확인하고 학기 중 학습 계획에 반영합니다."] },
+      { h: "고2 과목 선택을 앞두고", p: ["고1 2학기에는 고2 선택 과목을 정합니다. 진로와 목표 대학, 수학 실력을 함께 고려해 대수, 미적분Ⅰ, 확률과 통계 등의 학습 순서를 상담합니다."] }
+    ],
+    faq: [
+      ["고1 첫 시험을 망쳤어요. 회복할 수 있나요?", "고1 첫 시험은 적응 문제인 경우가 많습니다. 틀린 원인을 분석해 다음 시험 계획에 반영하면 충분히 회복할 수 있습니다."],
+      ["내신과 모의고사를 동시에 준비할 수 있나요?", "공통수학 내신 공부가 모의고사의 기초가 되기 때문에 두 가지를 함께 준비할 수 있습니다. 시험 기간에는 내신, 그 외 기간에는 모의고사형 문제 비중을 높입니다."]
+    ]
+  },
+  {
+    slug: "high-2", level: "high", keyword: "강원 고2 수학과외", short: "고2 수학",
+    title: "강원 고2 수학과외 | 대수·미적분Ⅰ·확률과 통계 1:1 맞춤",
+    eyebrow: "HIGH 2",
+    lead: "고2는 내신 과목 수가 늘어나고 수능 범위 과목을 본격적으로 배우는 학년입니다. 대수, 미적분Ⅰ, 확률과 통계 내신과 수능 기초를 함께 다지는 고2 1:1 수학과외입니다.",
+    card: "대수, 미적분Ⅰ, 확률과 통계 학교별 내신과 수능 기초를 함께 설계합니다.",
+    sections: [
+      { h: "고2 수학 주요 과목", p: ["학교 편성에 따라 순서가 다르지만, 고2에서는 주로 다음 과목을 배웁니다."], list: ["대수: 지수함수와 로그함수, 삼각함수, 수열", "미적분Ⅰ: 함수의 극한과 연속, 미분, 적분", "확률과 통계: 경우의 수, 확률, 통계"] },
+      { h: "고2 내신은 과목별 전략이 필요합니다", p: ["대수는 개념 간 연결, 미적분Ⅰ은 계산의 정확도와 그래프 해석, 확률과 통계는 문제 상황 해석이 핵심입니다. 학교 시험 범위와 출제 경향에 맞춰 과목별로 대비 방식을 달리합니다."] },
+      { h: "수능 범위와 겹치는 과목", p: ["고2에서 배우는 대수, 미적분Ⅰ, 확률과 통계는 수능 수학의 주요 범위입니다. 내신 공부를 할 때부터 기출 유형을 함께 다루면 고3 수능대비가 훨씬 수월해집니다."] },
+      { h: "고2 겨울방학", p: ["고2 겨울방학은 수능 전 범위를 한 번 정리할 수 있는 마지막 긴 방학입니다. 고2 과목의 취약 단원을 보완하고 수능 기출 분석을 시작합니다."] }
+    ],
+    faq: [
+      ["고2인데 수학을 포기하고 싶어요.", "고2 과목에서 막히는 원인은 공통수학이나 중학 내용인 경우가 많습니다. 필요한 부분만 짧게 보충하면 다시 따라갈 수 있습니다."],
+      ["고2 겨울방학에 무엇을 해야 하나요?", "고2 과목 전 범위 복습과 수능 기출 분석 시작을 목표로 합니다. 현재 성적에 따라 비중을 조정합니다."]
+    ]
+  },
+  {
+    slug: "high-3", level: "high", keyword: "강원 고3 수학과외", short: "고3 수학",
+    title: "강원 고3 수학과외 | 수능수학 기출·실전 모의고사 1:1",
+    eyebrow: "HIGH 3",
+    lead: "고3 수학은 남은 기간 안에 점수를 만드는 싸움입니다. 수능 범위 기출 분석, 실전 모의고사, 취약 단원 보완을 학생의 목표 등급에 맞춰 설계하는 고3·예비고3 1:1 수학과외입니다.",
+    card: "수능 범위 기출 분석, 실전 모의고사, 취약 단원 보완으로 목표 등급을 만듭니다.",
+    sections: [
+      { h: "고3 수학 1년 흐름", p: ["학생 상황에 따라 조정하지만 기본 흐름은 다음과 같습니다."], list: ["겨울방학(예비고3): 수능 범위 개념 정리, 취약 단원 보완", "3~6월: 단원별 기출 분석, 3월·6월 모의평가 대비", "7~9월: 실전 모의고사 루틴, 9월 모의평가 대비", "10~11월: 실전 감각 유지, 실수 관리, 최종 점검"] },
+      { h: "2028학년도 수능을 준비하는 예비고3", p: ["2028학년도 수능부터 수학은 선택과목 없이 대수, 미적분Ⅰ, 확률과 통계를 공통으로 응시합니다. 세 과목 모두 출제되므로 한 과목도 비워 둘 수 없고, 고2 내신 과목의 개념을 수능형 문제로 연결하는 것이 중요합니다."] },
+      { h: "내신과 수능 사이의 균형", p: ["고3 1학기 내신은 수시 전형에 중요한 마지막 성적입니다. 목표 전형을 확인한 뒤 시험 기간에는 내신, 그 외 기간에는 수능수학 비중을 높이는 방식으로 계획을 세웁니다."] },
+      { h: "실전에서 점수를 지키는 법", p: ["수능에서는 아는 문제를 실수 없이 맞히는 것이 가장 중요합니다. 실전 모의고사마다 시간 배분, 넘길 문제의 기준, 검산 습관을 점검하고 실수 유형을 기록해 줄여 나갑니다."] }
+    ],
+    faq: [
+      ["고3인데 지금 시작해도 늦지 않았나요?", "남은 기간과 현재 등급에 따라 목표를 현실적으로 정합니다. 출제 비중이 높은 단원과 자주 틀리는 유형부터 정리하면 짧은 기간에도 점수를 올릴 여지가 있습니다."],
+      ["N수생도 수업이 가능한가요?", "가능합니다. 지난 수능과 모의고사 성적을 바탕으로 취약 단원을 진단해 계획을 세웁니다."]
+    ]
+  }
+];
+
 const commonFaq = [
   ["{full} 수학과외는 방문 수업인가요, 온라인 수업인가요?", "{areas} 등 {full} 생활권은 거리와 일정에 따라 방문 1:1 수업 또는 화상(온라인) 수업 중 선택할 수 있고, 두 방식을 섞어 진행할 수도 있습니다."],
   ["수학과외 비용(수업료)은 어떻게 정해지나요?", "학년, 주당 수업 횟수, 1회 수업 시간에 따라 달라집니다. 무료 상담에서 학생 상황을 확인한 뒤 수업 방식과 비용을 투명하게 안내해 드립니다."],
@@ -276,7 +450,7 @@ const css = `@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:
 @media(max-width:900px){.topic-grid,.level-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.topic-grid,.level-grid{grid-template-columns:1fr}.faq-item summary{font-size:16px}.faq-item p{padding-left:0}footer{padding-bottom:90px}}`;
 
-const nav = `<nav class="nav"><div class="wrap nav-inner"><a class="brand" href="/"><img src="/assets/logo.svg" alt="">강원 수학과외</a><div class="nav-links"><a href="/elementary/">초등 수학</a><a href="/middle/">중등 수학</a><a href="/high/">고등 수학</a><a href="/guide/">학습 가이드</a><a href="#region" onclick="window.openRegionModal && (event.preventDefault(), window.openRegionModal())">지역 찾기</a><a class="nav-cta" href="#contact">상담 신청</a></div></div></nav>`;
+const nav = `<nav class="nav"><div class="wrap nav-inner"><a class="brand" href="/"><img src="/assets/logo.svg" alt="">강원 수학과외</a><div class="nav-links"><a href="/elementary/">초등 수학</a><a href="/middle/">중등 수학</a><a href="/high/">고등 수학</a><a href="/grade/">학년별</a><a href="/guide/">학습 가이드</a><a href="#region" onclick="window.openRegionModal && (event.preventDefault(), window.openRegionModal())">지역 찾기</a><a class="nav-cta" href="#contact">상담 신청</a></div></div></nav>`;
 const regionLinks = regions.map(region => `<a class="region-link" href="/regions/${region.slug}/">${region.name}${region.type}<span>↗</span></a>`).join("");
 const gradeCards = grades.map(([name, text]) => `<article class="grade"><small>PREPARATION</small><h3>${name} 수학과외</h3><p>${text}</p></article>`).join("");
 
@@ -405,11 +579,12 @@ function hero(title, copy, eyebrow = "Gangwon Private Math Coaching", crumbs = [
 
 const proof = `<div class="proof"><div class="wrap proof-grid"><div class="proof-item"><strong>1:1 맞춤 설계</strong><span>현재 실력부터 목표까지 개인별 진도</span></div><div class="proof-item"><strong>18개 시군 수업</strong><span>강원 전 지역 방문·화상 수업 상담</span></div><div class="proof-item"><strong>초·중·고 전 학년</strong><span>기초수학, 내신, 수능을 한 흐름으로 관리</span></div></div></div>`;
 const process = `<section class="process" id="program"><div class="wrap"><div class="section-head"><h2>점수가 달라지는<br>수업의 순서</h2><p>문제를 더 많이 푸는 것보다 먼저 해야 할 일이 있습니다. 학생의 현재 위치를 정확히 확인하고, 이해와 반복이 필요한 지점을 찾아 수업을 설계합니다.</p></div><div class="steps"><article class="step"><span class="step-num">01 · 진단</span><h3>학습 상태 확인</h3><p>최근 시험지와 학습 이력을 바탕으로 개념, 연산, 문제 해석의 약점을 구분합니다.</p></article><article class="step"><span class="step-num">02 · 설계</span><h3>개인 커리큘럼</h3><p>학교 진도와 목표 성적, 가능한 학습 시간을 반영해 현실적인 계획을 세웁니다.</p></article><article class="step"><span class="step-num">03 · 수업</span><h3>개념과 적용 연결</h3><p>학생이 풀이 이유를 직접 설명하고 유사 문제에 적용할 수 있을 때까지 확인합니다.</p></article><article class="step"><span class="step-num">04 · 피드백</span><h3>학습 과정 관리</h3><p>오답과 과제 결과를 기록해 다음 수업에 반영하고 학부모님께 변화를 공유합니다.</p></article></div></div></section>`;
-const gradeSection = `<section class="grades" id="grade"><div class="wrap"><div class="section-head"><h2>학년이 바뀌기 전,<br>준비는 달라야 합니다</h2><p>예비 학년은 무조건 빠른 선행보다 이전 학년의 구멍을 찾아 다음 과정과 자연스럽게 연결하는 시기입니다.</p></div><div class="grade-grid">${gradeCards}</div></div></section>`;
+const gradeSection = `<section class="grades" id="grade"><div class="wrap"><div class="section-head"><h2>학년이 바뀌기 전,<br>준비는 달라야 합니다</h2><p>예비 학년은 무조건 빠른 선행보다 이전 학년의 구멍을 찾아 다음 과정과 자연스럽게 연결하는 시기입니다.</p></div><div class="grade-grid">${gradeCards}</div><div class="chips" style="margin-top:28px">${gradePages.map(page => `<a class="chip" href="/grade/${page.slug}/">${page.keyword}</a>`).join("")}</div></div></section>`;
 const regionsSection = `<section class="regions" id="region"><div class="wrap"><div class="section-head"><div><h2>우리 지역<br>수학과외 찾기</h2><p>강원특별자치도 18개 시군의 지역별 수업 안내를 확인하세요. 거주지와 일정에 따라 방문 또는 화상 수업을 상담합니다.</p></div><button type="button" class="button outline" style="color:var(--forest);border-color:var(--forest);" onclick="window.openRegionModal && window.openRegionModal()">시·군 선택 팝업 열기</button></div><div class="region-grid">${regionLinks}</div></div></section>`;
 const split = `<section class="split"><div class="split-image" role="img" aria-label="학생의 학습을 지도하는 수업 공간"></div><div class="split-copy"><p class="eyebrow">Study with direction</p><h2>혼자 공부하는 힘까지<br>함께 기릅니다</h2><p>과외 시간에만 풀 수 있는 문제는 오래 남지 않습니다. 문제를 읽고, 조건을 표시하고, 풀이를 검토하는 과정을 반복해 스스로 공부할 수 있는 기준을 만듭니다.</p><ul class="check-list"><li>학교별 시험 범위와 일정 반영</li><li>매 수업 오답 원인 기록</li><li>학생·학부모 정기 학습 피드백</li></ul></div></section>`;
 const guideSection = `<section class="level-section" id="guide"><div class="wrap"><div class="section-head"><h2>수학 공부 고민,<br>학습 가이드</h2><p>내신, 수능, 방학 선행, 기초 보충처럼 상담에서 가장 많이 받는 질문을 주제별로 정리했습니다.</p></div><div class="level-grid">${guides.map(guide => `<a class="level-card" href="/guide/${guide.slug}/"><small>${guide.eyebrow}</small><h3>${guide.keyword}</h3><p>${guide.card}</p><span class="more">가이드 읽기 →</span></a>`).join("")}</div></div></section>`;
-const footerLinks =`<nav class="footer-links" aria-label="사이트 링크">${levels.map(level => `<a href="/${level.slug}/">강원 ${level.label} 수학과외</a>`).join("")}${guides.map(guide => `<a href="/guide/${guide.slug}/">${guide.short}</a>`).join("")}${regions.map(region => `<a href="/regions/${region.slug}/">${region.name} 수학과외</a>`).join("")}</nav>`;
+const gradeHubSection = `<section class="level-section" id="grade-guide"><div class="wrap"><div class="section-head"><h2>학년별<br>수학과외 안내</h2><p>초등 저학년부터 고3까지, 학년마다 배우는 단원과 준비해야 할 시험이 다릅니다. 우리 아이 학년에 맞는 수업 방향을 확인하세요.</p></div><div class="level-grid">${gradePages.map(page => `<a class="level-card" href="/grade/${page.slug}/"><small>${page.eyebrow}</small><h3>${page.keyword}</h3><p>${page.card}</p><span class="more">${page.short} 자세히 보기 →</span></a>`).join("")}</div></div></section>`;
+const footerLinks =`<nav class="footer-links" aria-label="사이트 링크">${levels.map(level => `<a href="/${level.slug}/">강원 ${level.label} 수학과외</a>`).join("")}${gradePages.map(page => `<a href="/grade/${page.slug}/">${page.short}과외</a>`).join("")}${guides.map(guide => `<a href="/guide/${guide.slug}/">${guide.short}</a>`).join("")}${regions.map(region => `<a href="/regions/${region.slug}/">${region.name} 수학과외</a>`).join("")}</nav>`;
 const contact = (label = "강원") => `<section class="contact" id="contact"><div class="wrap contact-inner"><div><h2>${label} 수학과외,<br>현재 고민부터 들려주세요</h2><p>학년, 지역, 원하는 수업 목표를 전화나 문자로 남겨주시면 무료 학습 상담을 도와드립니다.</p></div><a class="button" href="tel:${phone}">${phone}</a></div></section><footer><div class="wrap">${footerLinks}<div class="footer-inner"><div><div class="footer-brand">강원 수학과외</div><span>강원특별자치도 초등·중등·고등 1:1 맞춤 수학 지도</span></div><div>상담 전화 <a href="tel:${phone}">${phone}</a><br>© ${buildDate.getFullYear()} 강원 수학과외. All rights reserved.</div></div></div></footer>`;
 
 function faqSection(items, heading) {
@@ -484,7 +659,7 @@ function levelPage(level, ctx) {
     ...(ctx.slug ? [`<a class="chip" href="/${level.slug}/">강원 ${level.label} 수학과외</a>`] : [])
   ].join("");
   const otherRegions = regions.filter(region => region.slug !== ctx.slug).map(region => `<a class="chip" href="/regions/${region.slug}/${level.slug}/">${region.name} ${level.label} 수학</a>`).join("");
-  const related = `<section class="related"><div class="wrap"><h2>함께 찾는 ${name} 수학과외 정보</h2><div class="chips">${sameRegion}</div><h3>${ctx.slug ? "다른 지역" : "지역별"} ${level.label} 수학과외</h3><div class="chips">${otherRegions}</div><h3>수학 학습 가이드</h3><div class="chips">${guideChips()}</div></div></section>`;
+  const related = `<section class="related"><div class="wrap"><h2>함께 찾는 ${name} 수학과외 정보</h2><div class="chips">${sameRegion}</div><h3>${ctx.slug ? "다른 지역" : "지역별"} ${level.label} 수학과외</h3><div class="chips">${otherRegions}</div><h3>학년별 ${level.label} 수학과외</h3><div class="chips">${gradePages.filter(page => page.level === level.slug).map(page => `<a class="chip" href="/grade/${page.slug}/">${page.keyword}</a>`).join("")}</div><h3>수학 학습 가이드</h3><div class="chips">${guideChips()}</div></div></section>`;
   const body = `${hero(`${name} ${level.label}<br>수학과외`, `${level.summary}. ${ctx.areas}에서 방문·화상으로 만나는 ${keyword}입니다.`, level.eyebrow, crumbs)}${proof}${intro}${ctx.slug ? schoolSection(ctx, [level]) : ""}${topics}${gradeBlock}${process}${faqSection(faq, `${keyword}<br>자주 묻는 질문`)}${related}${contact(`${name} ${level.label}`)}${renderRegionModal(false)}`;
   return layout({ title, description, body, canonical: `${siteUrl}${path}`, crumbs, faq });
 }
@@ -498,7 +673,7 @@ function guidePage(guide) {
   const crumbs = [["홈", "/"], ["학습 가이드", "/guide/"], [guide.keyword, path]];
   const description = `${guide.lead.split(". ")[0]}. ${guide.keyword} 무료 상담 ☎ ${phone}`;
   const faq = faqItems([...guide.faq, commonFaq[2]], gangwon);
-  const article = `<section class="article"><div class="wrap"><div class="article-body">${guide.sections.map(section => `<h2>${section.h}</h2>${section.p.map(text => `<p>${text}</p>`).join("")}${section.list ? `<ul class="check-list">${section.list.map(item => `<li>${item}</li>`).join("")}</ul>` : ""}`).join("")}</div></div></section>`;
+  const article = articleBody(guide.sections);
   const related = `<section class="related"><div class="wrap"><h2>함께 보면 좋은 정보</h2><div class="chips">${guideChips(guide)}${levels.map(level => `<a class="chip" href="/${level.slug}/">강원 ${level.label} 수학과외</a>`).join("")}</div><h3>지역별 수학과외</h3><div class="chips">${regions.map(region => `<a class="chip" href="/regions/${region.slug}/">${region.name} 수학과외</a>`).join("")}</div></div></section>`;
   const body = `${hero(guide.keyword, guide.lead, guide.eyebrow, crumbs)}${proof}${article}${faqSection(faq, `${guide.short}<br>자주 묻는 질문`)}${related}${contact()}${renderRegionModal(false)}`;
   return layout({ title: guide.title, description, body, canonical: `${siteUrl}${path}`, crumbs, faq });
@@ -510,7 +685,30 @@ function guideIndexPage() {
   return layout({ title: "강원 수학과외 학습 가이드 | 내신·수능·선행·기초수학", description: `수학 내신 대비, 수능수학 공부법, 겨울방학 수학 선행, 수포자 탈출, 화상 수학과외, 학원 vs 과외 비교까지 강원 수학과외 학습 가이드. 무료 상담 ☎ ${phone}`, body, canonical: `${siteUrl}/guide/`, crumbs });
 }
 
+function articleBody(sections) {
+  return `<section class="article"><div class="wrap"><div class="article-body">${sections.map(section => `<h2>${section.h}</h2>${section.p.map(text => `<p>${text}</p>`).join("")}${section.list ? `<ul class="check-list">${section.list.map(item => `<li>${item}</li>`).join("")}</ul>` : ""}`).join("")}</div></div></section>`;
+}
+
+function gradePage(page) {
+  const level = levels.find(item => item.slug === page.level);
+  const path = `/grade/${page.slug}/`;
+  const crumbs = [["홈", "/"], ["학년별 수학과외", "/grade/"], [page.keyword, path]];
+  const description = `${page.keyword} - ${page.card} 강원 18개 시군 방문·화상 1:1 수업, 무료 상담 ☎ ${phone}`;
+  const faq = faqItems([...page.faq, ...commonFaq.slice(0, 2)], gangwon);
+  const related = `<section class="related"><div class="wrap"><h2>함께 찾는 학년별 수학과외</h2><div class="chips">${gradePages.filter(other => other !== page).map(other => `<a class="chip" href="/grade/${other.slug}/">${other.keyword}</a>`).join("")}</div><h3>지역별 ${level.label} 수학과외</h3><div class="chips"><a class="chip" href="/${level.slug}/">강원 ${level.label} 수학과외</a>${regions.map(region => `<a class="chip" href="/regions/${region.slug}/${level.slug}/">${region.name} ${level.label} 수학과외</a>`).join("")}</div><h3>수학 학습 가이드</h3><div class="chips">${guideChips()}</div></div></section>`;
+  const body = `${hero(page.keyword, page.lead, page.eyebrow, crumbs)}${proof}${articleBody(page.sections)}${process}${faqSection(faq, `${page.short}과외<br>자주 묻는 질문`)}${related}${contact(page.keyword.replace(" 수학과외", ""))}${renderRegionModal(false)}`;
+  return layout({ title: page.title, description, body, canonical: `${siteUrl}${path}`, crumbs, faq });
+}
+
+function gradeIndexPage() {
+  const crumbs = [["홈", "/"], ["학년별 수학과외", "/grade/"]];
+  const body = `${hero("강원 학년별<br>수학과외", "초등 저학년부터 고3까지 학년별로 배우는 단원, 자주 막히는 지점, 방학 계획을 정리했습니다. 우리 아이 학년에 맞는 수업 방향을 확인해 보세요.", "MATH BY GRADE", crumbs)}${proof}${gradeHubSection}${regionsSection}${contact()}${renderRegionModal(false)}`;
+  return layout({ title: "강원 학년별 수학과외 | 초등부터 고3까지 1:1 맞춤", description: `강원 초등 저학년·고학년, 예비중1, 중1·중2·중3, 예비고1, 고1·고2·고3 학년별 수학과외 안내. 단원별 학습 포인트와 방학 계획, 무료 상담 ☎ ${phone}`, body, canonical: `${siteUrl}/grade/`, crumbs });
+}
+
 const pages = [{ path: "/", priority: "1.0", html: homePage() }];
+pages.push({ path: "/grade/", priority: "0.8", html: gradeIndexPage() });
+for (const page of gradePages) pages.push({ path: `/grade/${page.slug}/`, priority: "0.8", html: gradePage(page) });
 pages.push({ path: "/guide/", priority: "0.8", html: guideIndexPage() });
 for (const guide of guides) pages.push({ path: `/guide/${guide.slug}/`, priority: "0.8", html: guidePage(guide) });
 for (const level of levels) pages.push({ path: `/${level.slug}/`, priority: "0.9", html: levelPage(level, gangwon) });
