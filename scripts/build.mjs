@@ -401,6 +401,190 @@ const gradePages = [
   }
 ];
 
+// 단원별 키워드 페이지 (/units/{slug}/)
+const unitPages = [
+  {
+    slug: "fraction", level: "elementary", keyword: "초등 분수 계산", short: "분수 계산",
+    title: "초등 분수 계산 과외 | 약분·통분·분수 나눗셈 1:1 강원 수학과외",
+    eyebrow: "UNIT · FRACTION",
+    when: "초3~초6",
+    lead: "분수는 초등 수학에서 가장 많은 학생이 막히는 단원이고, 중학교 정수와 유리수·방정식 계산의 바탕입니다. 분수의 의미부터 약분·통분, 분수의 곱셈과 나눗셈까지 원리로 이해하는 1:1 수업입니다.",
+    card: "분수의 의미, 약분과 통분, 분수의 곱셈·나눗셈을 원리부터 다시 잡습니다.",
+    sections: [
+      { h: "분수는 학년마다 이렇게 이어집니다", p: ["분수는 한 학년에서 끝나지 않고 4년에 걸쳐 조금씩 어려워집니다."], list: ["초3: 분수와 소수의 첫 개념, 단위분수", "초4: 분모가 같은 분수의 덧셈과 뺄셈", "초5: 약수와 배수, 약분과 통분, 분모가 다른 분수의 덧셈·뺄셈, 분수의 곱셈", "초6: 분수의 나눗셈, 분수와 소수의 혼합 계산"] },
+      { h: "분수 계산에서 자주 틀리는 이유", p: ["분수 계산 실수의 대부분은 계산 방법을 외웠지만 분수가 무엇을 뜻하는지 모를 때 생깁니다. 분모끼리 더하거나, 통분 없이 계산하거나, 나눗셈에서 어느 쪽을 뒤집는지 헷갈리는 것이 대표적입니다."] },
+      { h: "그림에서 식으로", p: ["처음에는 원·막대 모델로 분수의 크기를 직접 비교하고 나눠 보게 합니다. 그림으로 이해한 뒤 같은 문제를 식으로 바꿔 쓰고, 마지막에는 그림 없이 계산하도록 단계를 나눕니다."] },
+      { h: "약수와 배수부터 점검", p: ["약분과 통분이 느리거나 자주 틀린다면 대부분 약수·배수, 곱셈구구가 원인입니다. 분수 계산이 막히면 이 부분부터 거슬러 올라가 확인합니다."] }
+    ],
+    faq: [
+      ["분수 계산만 따로 수업할 수 있나요?", "가능합니다. 학교 진도와 함께 매 수업 일부를 분수 보충에 배정하거나, 방학 동안 분수 단원만 집중적으로 다룰 수도 있습니다."],
+      ["중학생인데 분수 계산이 약해요.", "중학교 유리수와 방정식 계산이 흔들리는 원인이 되므로 초5~초6 분수 단원을 짧게 다시 보충한 뒤 중학 진도로 돌아옵니다."]
+    ]
+  },
+  {
+    slug: "word-problems", level: "elementary", keyword: "초등 수학 문장제", short: "문장제",
+    title: "초등 수학 문장제 과외 | 문제 읽기와 식 세우기 1:1 강원 수학과외",
+    eyebrow: "UNIT · WORD PROBLEMS",
+    when: "초1~초6",
+    lead: "계산은 잘하는데 문장제만 나오면 틀리는 학생이 많습니다. 문제를 읽고, 조건을 정리하고, 식으로 바꾸는 과정을 단계별로 훈련하는 초등 수학 문장제 1:1 수업입니다.",
+    card: "문제를 읽고 조건을 정리해 식으로 바꾸는 과정을 단계별로 훈련합니다.",
+    sections: [
+      { h: "문장제가 어려운 진짜 이유", p: ["문장제를 틀리는 학생은 대부분 계산이 아니라 문제를 이해하는 단계에서 막힙니다. 문장이 길어지면 무엇을 구하는지 놓치고, 숫자만 보고 아무 연산이나 고르는 습관이 생깁니다."] },
+      { h: "문장제 풀이 4단계", p: ["매 수업 같은 순서로 문장제를 풀어 습관이 되게 합니다."], list: ["1단계: 구하는 것에 밑줄 긋기", "2단계: 주어진 조건을 짧게 정리하기", "3단계: 그림이나 표로 상황 나타내기", "4단계: 식을 세우고 답이 문제 상황에 맞는지 확인하기"] },
+      { h: "중학교 방정식으로 이어집니다", p: ["문장제를 식으로 바꾸는 힘은 중학교 일차방정식 활용, 연립방정식 활용 문제로 그대로 이어집니다. 초등 때 이 과정을 익혀 두면 중학 서술형에서도 큰 차이를 만듭니다."] },
+      { h: "읽기 습관도 함께", p: ["문제를 끝까지 읽지 않는 습관이 있다면 문제를 소리 내어 읽게 하거나, 자기 말로 다시 설명하게 합니다. 수학 문제를 정확히 읽는 연습은 다른 과목 공부에도 도움이 됩니다."] }
+    ],
+    faq: [
+      ["문장제는 많이 풀면 늘지 않나요?", "같은 방식으로 많이 푸는 것보다, 한 문제를 정해진 단계로 정확히 푸는 연습이 더 효과적입니다. 익숙해진 뒤 문제 수를 늘립니다."],
+      ["독해력이 부족해서 문장제를 못 푸는 것 같아요.", "수학 문장제는 정해진 표현이 반복되기 때문에 수업에서 자주 나오는 표현과 뜻을 정리해 주면 빠르게 좋아지는 경우가 많습니다."]
+    ]
+  },
+  {
+    slug: "linear-equation", level: "middle", keyword: "중1 일차방정식", short: "일차방정식",
+    title: "중1 일차방정식 과외 | 이항·활용 문제 1:1 강원 수학과외",
+    eyebrow: "UNIT · LINEAR EQUATION",
+    when: "중1",
+    lead: "일차방정식은 중학교 수학에서 처음 만나는 방정식이고, 이후 연립방정식, 이차방정식, 고등 방정식까지 모든 방정식의 출발점입니다. 등식의 성질과 이항을 정확히 이해하고 활용 문제까지 해결하는 1:1 수업입니다.",
+    card: "등식의 성질과 이항, 괄호·분수가 있는 방정식, 활용 문제까지 단계별로 다집니다.",
+    sections: [
+      { h: "일차방정식 단원에서 배우는 것", p: ["중1 문자와 식 단원 안에서 다음 순서로 배웁니다."], list: ["문자의 사용과 식의 값", "일차식의 계산", "등식의 성질과 이항", "괄호, 소수, 분수가 있는 일차방정식", "일차방정식의 활용(거리·속력·시간, 농도, 나이, 개수 문제)"] },
+      { h: "이항에서 가장 많이 틀립니다", p: ["이항할 때 부호를 바꾸지 않거나, 분수 계수의 방정식에서 양변에 같은 수를 곱하지 않는 실수가 가장 흔합니다. 이항을 규칙으로 외우기 전에 등식의 성질로 왜 부호가 바뀌는지 이해하게 합니다."] },
+      { h: "활용 문제는 표로 정리", p: ["거리·속력·시간, 농도처럼 자주 나오는 활용 문제는 조건을 표로 정리하는 방법을 익히면 훨씬 쉬워집니다. 미지수를 무엇으로 둘지 정하는 연습을 반복합니다."] },
+      { h: "중2 연립방정식으로", p: ["일차방정식을 정확히 풀 수 있어야 중2 연립방정식과 일차부등식으로 넘어갈 수 있습니다. 중1 겨울방학에 활용 문제까지 다시 점검합니다."] }
+    ],
+    faq: [
+      ["계산은 되는데 활용 문제가 안 돼요.", "활용 문제는 조건을 식으로 바꾸는 단계가 핵심입니다. 유형별로 조건을 표로 정리하는 연습을 하면 빠르게 좋아집니다."],
+      ["초등 분수 계산이 약한데 괜찮을까요?", "분수 계수 방정식에서 실수가 많아지므로 필요하면 분수 계산을 짧게 보충합니다."]
+    ]
+  },
+  {
+    slug: "linear-function", level: "middle", keyword: "중2 일차함수", short: "일차함수",
+    title: "중2 일차함수 과외 | 기울기·그래프·활용 1:1 강원 수학과외",
+    eyebrow: "UNIT · LINEAR FUNCTION",
+    when: "중2",
+    lead: "일차함수는 많은 학생이 처음으로 수학이 어렵다고 느끼는 단원입니다. 식, 표, 그래프를 오가며 생각하는 방법을 익혀 고등 함수까지 이어지는 기초를 만드는 1:1 수업입니다.",
+    card: "함수의 뜻, 기울기와 절편, 그래프 해석, 일차방정식과의 관계를 차근차근 연결합니다.",
+    sections: [
+      { h: "일차함수 단원에서 배우는 것", p: ["중2 일차함수는 다음 순서로 이어집니다."], list: ["함수의 뜻과 함숫값", "일차함수와 그래프, 기울기와 y절편", "일차함수의 식 구하기", "일차함수의 활용", "일차함수와 일차방정식의 관계, 연립방정식의 해와 그래프"] },
+      { h: "기울기를 그림으로 이해합니다", p: ["기울기를 공식으로만 외우면 그래프 문제에서 바로 막힙니다. 좌표평면에 직접 점을 찍고 x가 1 늘 때 y가 얼마나 변하는지 확인하며, 기울기의 의미를 눈으로 보게 합니다."] },
+      { h: "식·표·그래프를 오가는 연습", p: ["같은 함수를 식, 표, 그래프로 각각 나타내고 서로 바꾸는 연습을 반복합니다. 이 연습이 되어야 그래프를 보고 식을 구하거나 두 직선의 교점을 구하는 문제를 해결할 수 있습니다."] },
+      { h: "중3 이차함수와 고등 함수로", p: ["일차함수에서 익힌 그래프 해석 방법은 중3 이차함수, 고등학교 함수와 그래프 단원으로 그대로 이어집니다. 일차함수가 불안하면 이후 함수 단원 전체가 흔들리므로 확실히 다지고 넘어갑니다."] }
+    ],
+    faq: [
+      ["일차함수 그래프만 나오면 손을 못 대요.", "좌표평면에 점을 찍어 그래프를 직접 그려 보는 것부터 시작합니다. 그래프를 그릴 수 있게 되면 해석 문제도 함께 좋아집니다."],
+      ["중1 좌표평면부터 다시 해야 하나요?", "좌표 읽기와 정비례·반비례가 불안하다면 짧게 복습한 뒤 일차함수로 넘어갑니다."]
+    ]
+  },
+  {
+    slug: "factorization", level: "middle", keyword: "중3 인수분해", short: "인수분해",
+    title: "중3 인수분해 과외 | 곱셈공식·인수분해 공식 1:1 강원 수학과외",
+    eyebrow: "UNIT · FACTORIZATION",
+    when: "중3 · 고1",
+    lead: "인수분해는 이차방정식, 이차함수, 고등학교 다항식까지 계속 쓰이는 계산 도구입니다. 곱셈공식과 인수분해 공식을 정확하고 빠르게 쓸 수 있도록 훈련하는 1:1 수업입니다.",
+    card: "곱셈공식과 인수분해 공식, 복잡한 식의 인수분해를 정확하고 빠르게 익힙니다.",
+    sections: [
+      { h: "인수분해 단원에서 배우는 것", p: ["중3 다항식의 곱셈과 인수분해 단원은 다음 내용을 다룹니다."], list: ["다항식의 곱셈과 곱셈공식", "공통인수로 묶기", "완전제곱식, 합차 공식", "x²+(a+b)x+ab 꼴, acx²+(ad+bc)x+bd 꼴의 인수분해", "복잡한 식의 인수분해(치환, 항 묶기)"] },
+      { h: "곱셈공식과 한 쌍으로 익힙니다", p: ["인수분해는 곱셈공식을 거꾸로 하는 과정입니다. 곱셈공식으로 전개한 식을 다시 인수분해해 보는 연습을 반복하면 공식을 따로 외우지 않아도 자연스럽게 기억됩니다."] },
+      { h: "속도와 정확도", p: ["인수분해는 이후 단원에서 도구로 쓰이기 때문에 정확도와 함께 속도가 중요합니다. 수업 후 짧은 계산 과제를 매일 반복해 손에 익게 합니다."] },
+      { h: "고1 공통수학 다항식으로", p: ["고1 공통수학1에서는 세제곱 공식, 인수정리를 이용한 고차식의 인수분해가 추가됩니다. 중3 인수분해가 탄탄하면 고등 다항식 단원도 수월하게 따라갈 수 있습니다."] }
+    ],
+    faq: [
+      ["인수분해 공식이 자꾸 헷갈려요.", "곱셈공식으로 전개해 확인하는 습관을 들이면 공식이 헷갈려도 스스로 검산할 수 있습니다."],
+      ["고등학생인데 인수분해가 약해요.", "중3 인수분해를 짧게 복습한 뒤 고1 다항식의 인수분해로 바로 연결합니다."]
+    ]
+  },
+  {
+    slug: "quadratic-function", level: "middle", keyword: "중3 이차함수", short: "이차함수",
+    title: "중3 이차함수 과외 | 그래프·꼭짓점·최대최소 1:1 강원 수학과외",
+    eyebrow: "UNIT · QUADRATIC FUNCTION",
+    when: "중3 · 고1",
+    lead: "이차함수는 중학 수학의 마지막 고비이자 고등학교 수학 전체에서 가장 자주 쓰이는 함수입니다. 그래프의 모양과 평행이동, 꼭짓점과 축, 최댓값·최솟값까지 그래프로 이해하는 1:1 수업입니다.",
+    card: "이차함수 그래프, 평행이동, 꼭짓점과 축, 표준형 변환을 그래프로 이해합니다.",
+    sections: [
+      { h: "이차함수 단원에서 배우는 것", p: ["중3 이차함수와 고1 공통수학1로 이어집니다."], list: ["중3: y=ax² 그래프, 평행이동, y=a(x-p)²+q 꼴, 일반형을 표준형으로 바꾸기", "고1: 이차방정식과 이차함수의 관계, 이차함수의 최대·최소, 이차부등식"] },
+      { h: "그래프를 직접 그리게 합니다", p: ["이차함수를 식으로만 다루면 평행이동과 꼭짓점이 따로 외운 공식처럼 느껴집니다. a, p, q 값을 바꿔 가며 그래프를 직접 그리고 모양이 어떻게 변하는지 확인하게 합니다."] },
+      { h: "표준형 변환이 핵심입니다", p: ["일반형을 표준형으로 바꾸는 완전제곱식 만들기는 꼭짓점, 최댓값·최솟값 문제의 출발점입니다. 인수분해와 완전제곱식이 흔들리면 이 부분부터 다시 다집니다."] },
+      { h: "고등 수학에서 다시 만납니다", p: ["고등학교에서는 이차함수가 방정식, 부등식, 미분까지 거의 모든 단원에 등장합니다. 중3 이차함수를 그래프 중심으로 이해해 두면 고등 수학의 많은 부분이 쉬워집니다."] }
+    ],
+    faq: [
+      ["이차함수 꼭짓점 구하기가 어려워요.", "완전제곱식 만들기를 단계별로 연습하면 꼭짓점과 최댓값·최솟값을 함께 해결할 수 있습니다."],
+      ["예비고1인데 이차함수를 다시 해야 할까요?", "고1 공통수학1에서 바로 쓰이므로 불안하다면 겨울방학에 꼭 점검하는 것을 권합니다."]
+    ]
+  },
+  {
+    slug: "trigonometric-function", level: "high", keyword: "고등 삼각함수", short: "삼각함수",
+    title: "고등 삼각함수 과외 | 대수 삼각함수 그래프·방정식 1:1 강원 수학과외",
+    eyebrow: "UNIT · TRIGONOMETRY",
+    when: "고2 대수",
+    lead: "삼각함수는 고등 대수에서 가장 어렵게 느끼는 단원 중 하나입니다. 호도법과 단위원에서 출발해 그래프, 방정식과 부등식, 사인법칙·코사인법칙까지 원리로 연결하는 1:1 수업입니다.",
+    card: "호도법, 단위원, 삼각함수 그래프와 방정식, 사인·코사인법칙을 원리로 연결합니다.",
+    sections: [
+      { h: "삼각함수 단원에서 배우는 것", p: ["대수 과목의 삼각함수 단원은 다음 내용을 다룹니다."], list: ["일반각과 호도법", "삼각함수의 정의와 성질(단위원)", "삼각함수의 그래프, 주기와 최댓값·최솟값", "삼각함수가 포함된 방정식과 부등식", "사인법칙과 코사인법칙"] },
+      { h: "중3 삼각비와 무엇이 다른가요", p: ["중3 삼각비는 직각삼각형 안에서만 정의되지만, 고등 삼각함수는 단위원 위의 점으로 모든 각에서 정의됩니다. 이 차이를 이해하지 못하면 부호와 각의 변환에서 계속 실수가 생기므로 단위원부터 확실히 잡습니다."] },
+      { h: "그래프로 방정식을 풉니다", p: ["삼각함수 방정식과 부등식은 공식보다 그래프로 해를 찾는 것이 정확합니다. 주기와 대칭성을 그래프에서 직접 확인하며 해의 개수와 범위를 판단하는 연습을 합니다."] },
+      { h: "수능에서도 자주 나옵니다", p: ["삼각함수는 수능 범위 과목인 대수에 포함되어 있어 내신과 수능 모두에서 중요합니다. 기본 개념을 다진 뒤 수능 기출 유형으로 연결합니다."] }
+    ],
+    faq: [
+      ["삼각함수 공식을 외워도 문제가 안 풀려요.", "공식을 단위원과 그래프에서 직접 유도해 보면 언제 어떤 공식을 써야 하는지 판단할 수 있게 됩니다."],
+      ["중3 삼각비가 약한데 괜찮을까요?", "삼각비의 기본 값과 직각삼각형 관계를 짧게 복습한 뒤 삼각함수로 넘어갑니다."]
+    ]
+  },
+  {
+    slug: "sequence", level: "high", keyword: "고등 수열", short: "수열",
+    title: "고등 수열 과외 | 등차·등비수열·시그마·귀납법 1:1 강원 수학과외",
+    eyebrow: "UNIT · SEQUENCE",
+    when: "고2 대수",
+    lead: "수열은 규칙을 찾고 식으로 나타내는 힘이 필요한 단원입니다. 등차수열·등비수열, 합의 기호 ∑, 수학적 귀납법까지 규칙을 직접 찾아보며 익히는 1:1 수업입니다.",
+    card: "등차·등비수열, 수열의 합과 ∑, 귀납적 정의와 수학적 귀납법을 단계별로 익힙니다.",
+    sections: [
+      { h: "수열 단원에서 배우는 것", p: ["대수 과목의 수열 단원은 다음 순서로 이어집니다."], list: ["등차수열과 등비수열, 일반항", "등차수열·등비수열의 합", "합의 기호 ∑와 여러 가지 수열의 합", "수열의 귀납적 정의", "수학적 귀납법"] },
+      { h: "규칙을 직접 찾게 합니다", p: ["수열 문제는 공식을 대입하기 전에 처음 몇 항을 직접 써 보며 규칙을 찾는 것이 중요합니다. 항을 나열해 보는 습관이 있으면 처음 보는 유형에서도 접근 방법을 찾을 수 있습니다."] },
+      { h: "∑ 계산은 정확하게", p: ["합의 기호 ∑는 계산 실수가 많은 부분입니다. ∑의 성질과 자연수 거듭제곱의 합 공식을 정확하게 쓰는 연습을 반복하고, 계산 결과를 처음 몇 항으로 검산하는 방법을 익힙니다."] },
+      { h: "수능 고난도 문항과 연결", p: ["수열은 수능에서 귀납적 정의를 이용한 고난도 문항으로 자주 출제됩니다. 기본 개념을 다진 뒤 기출 문제로 조건을 해석하는 방법을 훈련합니다."] }
+    ],
+    faq: [
+      ["등차수열·등비수열은 되는데 ∑부터 어려워요.", "∑를 풀어 쓴 형태로 바꿔 보는 연습부터 시작하면 기호에 대한 부담이 줄어듭니다."],
+      ["수학적 귀납법 서술형이 어려워요.", "증명의 틀을 정해 단계별로 쓰는 연습을 하면 서술형에서도 안정적으로 점수를 받을 수 있습니다."]
+    ]
+  },
+  {
+    slug: "calculus", level: "high", keyword: "고등 미적분", short: "미적분",
+    title: "고등 미적분 과외 | 미적분Ⅰ 극한·미분·적분 1:1 강원 수학과외",
+    eyebrow: "UNIT · CALCULUS",
+    when: "고2 미적분Ⅰ",
+    lead: "미적분은 함수의 극한에서 출발해 미분과 적분으로 이어지는 고등 수학의 핵심입니다. 그래프와 함께 개념을 이해하고 계산과 활용까지 연결하는 미적분Ⅰ 1:1 수업입니다.",
+    card: "함수의 극한과 연속, 미분과 그래프, 정적분과 넓이를 그래프 중심으로 이해합니다.",
+    sections: [
+      { h: "미적분Ⅰ에서 배우는 것", p: ["미적분Ⅰ은 다항함수를 중심으로 다음 내용을 다룹니다."], list: ["함수의 극한과 연속", "미분계수와 도함수", "도함수의 활용(접선, 증가·감소, 극대·극소, 그래프)", "부정적분과 정적분", "정적분의 활용(넓이, 속도와 거리)"] },
+      { h: "극한과 연속부터 확실하게", p: ["미분계수의 정의가 극한으로 되어 있기 때문에 극한과 연속이 불안하면 미분 단원 전체가 흔들립니다. 그래프에서 좌극한과 우극한을 직접 읽어 보며 개념을 정확히 잡습니다."] },
+      { h: "미분은 그래프로 해석합니다", p: ["도함수의 부호로 함수의 증가·감소를 판단하고 그래프의 개형을 그리는 연습이 미분 단원의 중심입니다. 계산만 하지 않고 결과를 그래프로 확인하는 습관을 들입니다."] },
+      { h: "내신과 수능 모두 핵심", p: ["미적분Ⅰ은 수능 공통 범위에 포함되어 고난도 문항이 자주 출제됩니다. 학교 내신을 준비하며 수능 기출 유형까지 함께 다룹니다. 이공계 진로를 위해 미적분Ⅱ를 배우는 학생은 학교 편성에 맞춰 함께 준비합니다."] }
+    ],
+    faq: [
+      ["미분 계산은 되는데 그래프 문제가 어려워요.", "도함수의 부호와 그래프 개형을 연결하는 연습을 집중적으로 하면 활용 문제 해결이 훨씬 쉬워집니다."],
+      ["공통수학 함수가 약한데 미적분을 따라갈 수 있을까요?", "다항함수 그래프와 함수의 기본 개념을 짧게 보충한 뒤 미적분으로 넘어갑니다."]
+    ]
+  },
+  {
+    slug: "probability-statistics", level: "high", keyword: "고등 확률과 통계", short: "확률과 통계",
+    title: "고등 확률과 통계 과외 | 순열·조합·확률·통계 1:1 강원 수학과외",
+    eyebrow: "UNIT · PROBABILITY",
+    when: "고1 공통수학1 · 고2 확률과 통계",
+    lead: "확률과 통계는 계산보다 문제 상황을 정확히 해석하는 것이 중요한 과목입니다. 경우의 수에서 출발해 순열과 조합, 확률, 통계적 추정까지 상황을 정리하는 방법을 익히는 1:1 수업입니다.",
+    card: "경우의 수, 순열과 조합, 조건부확률, 확률분포와 통계적 추정을 상황 해석 중심으로 익힙니다.",
+    sections: [
+      { h: "확률과 통계에서 배우는 것", p: ["고1 공통수학1의 경우의 수에서 시작해 고2 확률과 통계로 이어집니다."], list: ["고1: 경우의 수, 순열과 조합", "확률과 통계: 여러 가지 순열, 중복조합, 이항정리", "확률의 뜻과 덧셈정리, 조건부확률, 독립시행", "확률변수와 확률분포, 이항분포, 정규분포", "모평균의 추정"] },
+      { h: "중복과 누락을 막는 정리법", p: ["경우의 수와 확률에서 가장 많은 실수는 같은 경우를 두 번 세거나 빠뜨리는 것입니다. 기준을 정해 경우를 나누고, 수형도나 표로 정리하는 방법을 반복 연습합니다."] },
+      { h: "문제 상황을 말로 설명하기", p: ["확률 문제는 같은 숫자라도 순서를 고려하는지, 중복을 허용하는지에 따라 답이 달라집니다. 풀이 전에 문제 상황을 자기 말로 설명하게 해 어떤 방법을 써야 하는지 스스로 판단하게 합니다."] },
+      { h: "통계는 개념과 계산을 함께", p: ["확률분포와 정규분포, 추정 단원은 용어와 공식이 많아 헷갈리기 쉽습니다. 개념의 의미를 정리한 뒤 표준화와 같은 핵심 계산을 반복해 내신과 수능에 모두 대비합니다."] }
+    ],
+    faq: [
+      ["순열과 조합이 언제 쓰이는지 헷갈려요.", "순서를 고려하는지 먼저 판단하는 연습을 하면 대부분의 문제에서 방법을 고를 수 있습니다."],
+      ["확률은 감으로 푸는 것 같아요.", "경우를 나누는 기준과 정리 방법을 익히면 감이 아니라 근거를 가지고 풀 수 있게 됩니다."]
+    ]
+  }
+];
+
 const commonFaq = [
   ["{full} 수학과외는 방문 수업인가요, 온라인 수업인가요?", "{areas} 등 {full} 생활권은 거리와 일정에 따라 방문 1:1 수업 또는 화상(온라인) 수업 중 선택할 수 있고, 두 방식을 섞어 진행할 수도 있습니다."],
   ["수학과외 비용(수업료)은 어떻게 정해지나요?", "학년, 주당 수업 횟수, 1회 수업 시간에 따라 달라집니다. 무료 상담에서 학생 상황을 확인한 뒤 수업 방식과 비용을 투명하게 안내해 드립니다."],
@@ -450,7 +634,7 @@ const css = `@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:
 @media(max-width:900px){.topic-grid,.level-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.topic-grid,.level-grid{grid-template-columns:1fr}.faq-item summary{font-size:16px}.faq-item p{padding-left:0}footer{padding-bottom:90px}}`;
 
-const nav = `<nav class="nav"><div class="wrap nav-inner"><a class="brand" href="/"><img src="/assets/logo.svg" alt="">강원 수학과외</a><div class="nav-links"><a href="/elementary/">초등 수학</a><a href="/middle/">중등 수학</a><a href="/high/">고등 수학</a><a href="/grade/">학년별</a><a href="/guide/">학습 가이드</a><a href="#region" onclick="window.openRegionModal && (event.preventDefault(), window.openRegionModal())">지역 찾기</a><a class="nav-cta" href="#contact">상담 신청</a></div></div></nav>`;
+const nav = `<nav class="nav"><div class="wrap nav-inner"><a class="brand" href="/"><img src="/assets/logo.svg" alt="">강원 수학과외</a><div class="nav-links"><a href="/elementary/">초등 수학</a><a href="/middle/">중등 수학</a><a href="/high/">고등 수학</a><a href="/grade/">학년별</a><a href="/units/">단원별</a><a href="/guide/">학습 가이드</a><a href="#region" onclick="window.openRegionModal && (event.preventDefault(), window.openRegionModal())">지역 찾기</a><a class="nav-cta" href="#contact">상담 신청</a></div></div></nav>`;
 const regionLinks = regions.map(region => `<a class="region-link" href="/regions/${region.slug}/">${region.name}${region.type}<span>↗</span></a>`).join("");
 const gradeCards = grades.map(([name, text]) => `<article class="grade"><small>PREPARATION</small><h3>${name} 수학과외</h3><p>${text}</p></article>`).join("");
 
@@ -584,7 +768,7 @@ const regionsSection = `<section class="regions" id="region"><div class="wrap"><
 const split = `<section class="split"><div class="split-image" role="img" aria-label="학생의 학습을 지도하는 수업 공간"></div><div class="split-copy"><p class="eyebrow">Study with direction</p><h2>혼자 공부하는 힘까지<br>함께 기릅니다</h2><p>과외 시간에만 풀 수 있는 문제는 오래 남지 않습니다. 문제를 읽고, 조건을 표시하고, 풀이를 검토하는 과정을 반복해 스스로 공부할 수 있는 기준을 만듭니다.</p><ul class="check-list"><li>학교별 시험 범위와 일정 반영</li><li>매 수업 오답 원인 기록</li><li>학생·학부모 정기 학습 피드백</li></ul></div></section>`;
 const guideSection = `<section class="level-section" id="guide"><div class="wrap"><div class="section-head"><h2>수학 공부 고민,<br>학습 가이드</h2><p>내신, 수능, 방학 선행, 기초 보충처럼 상담에서 가장 많이 받는 질문을 주제별로 정리했습니다.</p></div><div class="level-grid">${guides.map(guide => `<a class="level-card" href="/guide/${guide.slug}/"><small>${guide.eyebrow}</small><h3>${guide.keyword}</h3><p>${guide.card}</p><span class="more">가이드 읽기 →</span></a>`).join("")}</div></div></section>`;
 const gradeHubSection = `<section class="level-section" id="grade-guide"><div class="wrap"><div class="section-head"><h2>학년별<br>수학과외 안내</h2><p>초등 저학년부터 고3까지, 학년마다 배우는 단원과 준비해야 할 시험이 다릅니다. 우리 아이 학년에 맞는 수업 방향을 확인하세요.</p></div><div class="level-grid">${gradePages.map(page => `<a class="level-card" href="/grade/${page.slug}/"><small>${page.eyebrow}</small><h3>${page.keyword}</h3><p>${page.card}</p><span class="more">${page.short} 자세히 보기 →</span></a>`).join("")}</div></div></section>`;
-const footerLinks =`<nav class="footer-links" aria-label="사이트 링크">${levels.map(level => `<a href="/${level.slug}/">강원 ${level.label} 수학과외</a>`).join("")}${gradePages.map(page => `<a href="/grade/${page.slug}/">${page.short}과외</a>`).join("")}${guides.map(guide => `<a href="/guide/${guide.slug}/">${guide.short}</a>`).join("")}${regions.map(region => `<a href="/regions/${region.slug}/">${region.name} 수학과외</a>`).join("")}</nav>`;
+const footerLinks =`<nav class="footer-links" aria-label="사이트 링크">${levels.map(level => `<a href="/${level.slug}/">강원 ${level.label} 수학과외</a>`).join("")}${gradePages.map(page => `<a href="/grade/${page.slug}/">${page.short}과외</a>`).join("")}${unitPages.map(unit => `<a href="/units/${unit.slug}/">${unit.short} 과외</a>`).join("")}${guides.map(guide => `<a href="/guide/${guide.slug}/">${guide.short}</a>`).join("")}${regions.map(region => `<a href="/regions/${region.slug}/">${region.name} 수학과외</a>`).join("")}</nav>`;
 const contact = (label = "강원") => `<section class="contact" id="contact"><div class="wrap contact-inner"><div><h2>${label} 수학과외,<br>현재 고민부터 들려주세요</h2><p>학년, 지역, 원하는 수업 목표를 전화나 문자로 남겨주시면 무료 학습 상담을 도와드립니다.</p></div><a class="button" href="tel:${phone}">${phone}</a></div></section><footer><div class="wrap">${footerLinks}<div class="footer-inner"><div><div class="footer-brand">강원 수학과외</div><span>강원특별자치도 초등·중등·고등 1:1 맞춤 수학 지도</span></div><div>상담 전화 <a href="tel:${phone}">${phone}</a><br>© ${buildDate.getFullYear()} 강원 수학과외. All rights reserved.</div></div></div></footer>`;
 
 function faqSection(items, heading) {
@@ -659,7 +843,7 @@ function levelPage(level, ctx) {
     ...(ctx.slug ? [`<a class="chip" href="/${level.slug}/">강원 ${level.label} 수학과외</a>`] : [])
   ].join("");
   const otherRegions = regions.filter(region => region.slug !== ctx.slug).map(region => `<a class="chip" href="/regions/${region.slug}/${level.slug}/">${region.name} ${level.label} 수학</a>`).join("");
-  const related = `<section class="related"><div class="wrap"><h2>함께 찾는 ${name} 수학과외 정보</h2><div class="chips">${sameRegion}</div><h3>${ctx.slug ? "다른 지역" : "지역별"} ${level.label} 수학과외</h3><div class="chips">${otherRegions}</div><h3>학년별 ${level.label} 수학과외</h3><div class="chips">${gradePages.filter(page => page.level === level.slug).map(page => `<a class="chip" href="/grade/${page.slug}/">${page.keyword}</a>`).join("")}</div><h3>수학 학습 가이드</h3><div class="chips">${guideChips()}</div></div></section>`;
+  const related = `<section class="related"><div class="wrap"><h2>함께 찾는 ${name} 수학과외 정보</h2><div class="chips">${sameRegion}</div><h3>${ctx.slug ? "다른 지역" : "지역별"} ${level.label} 수학과외</h3><div class="chips">${otherRegions}</div><h3>학년별 ${level.label} 수학과외</h3><div class="chips">${gradePages.filter(page => page.level === level.slug).map(page => `<a class="chip" href="/grade/${page.slug}/">${page.keyword}</a>`).join("")}</div><h3>단원별 ${level.label} 수학과외</h3><div class="chips">${unitChips(level.slug)}</div><h3>수학 학습 가이드</h3><div class="chips">${guideChips()}</div></div></section>`;
   const body = `${hero(`${name} ${level.label}<br>수학과외`, `${level.summary}. ${ctx.areas}에서 방문·화상으로 만나는 ${keyword}입니다.`, level.eyebrow, crumbs)}${proof}${intro}${ctx.slug ? schoolSection(ctx, [level]) : ""}${topics}${gradeBlock}${process}${faqSection(faq, `${keyword}<br>자주 묻는 질문`)}${related}${contact(`${name} ${level.label}`)}${renderRegionModal(false)}`;
   return layout({ title, description, body, canonical: `${siteUrl}${path}`, crumbs, faq });
 }
@@ -695,7 +879,7 @@ function gradePage(page) {
   const crumbs = [["홈", "/"], ["학년별 수학과외", "/grade/"], [page.keyword, path]];
   const description = `${page.keyword} - ${page.card} 강원 18개 시군 방문·화상 1:1 수업, 무료 상담 ☎ ${phone}`;
   const faq = faqItems([...page.faq, ...commonFaq.slice(0, 2)], gangwon);
-  const related = `<section class="related"><div class="wrap"><h2>함께 찾는 학년별 수학과외</h2><div class="chips">${gradePages.filter(other => other !== page).map(other => `<a class="chip" href="/grade/${other.slug}/">${other.keyword}</a>`).join("")}</div><h3>지역별 ${level.label} 수학과외</h3><div class="chips"><a class="chip" href="/${level.slug}/">강원 ${level.label} 수학과외</a>${regions.map(region => `<a class="chip" href="/regions/${region.slug}/${level.slug}/">${region.name} ${level.label} 수학과외</a>`).join("")}</div><h3>수학 학습 가이드</h3><div class="chips">${guideChips()}</div></div></section>`;
+  const related = `<section class="related"><div class="wrap"><h2>함께 찾는 학년별 수학과외</h2><div class="chips">${gradePages.filter(other => other !== page).map(other => `<a class="chip" href="/grade/${other.slug}/">${other.keyword}</a>`).join("")}</div><h3>단원별 ${level.label} 수학과외</h3><div class="chips">${unitChips(level.slug)}</div><h3>지역별 ${level.label} 수학과외</h3><div class="chips"><a class="chip" href="/${level.slug}/">강원 ${level.label} 수학과외</a>${regions.map(region => `<a class="chip" href="/regions/${region.slug}/${level.slug}/">${region.name} ${level.label} 수학과외</a>`).join("")}</div><h3>수학 학습 가이드</h3><div class="chips">${guideChips()}</div></div></section>`;
   const body = `${hero(page.keyword, page.lead, page.eyebrow, crumbs)}${proof}${articleBody(page.sections)}${process}${faqSection(faq, `${page.short}과외<br>자주 묻는 질문`)}${related}${contact(page.keyword.replace(" 수학과외", ""))}${renderRegionModal(false)}`;
   return layout({ title: page.title, description, body, canonical: `${siteUrl}${path}`, crumbs, faq });
 }
@@ -706,7 +890,35 @@ function gradeIndexPage() {
   return layout({ title: "강원 학년별 수학과외 | 초등부터 고3까지 1:1 맞춤", description: `강원 초등 저학년·고학년, 예비중1, 중1·중2·중3, 예비고1, 고1·고2·고3 학년별 수학과외 안내. 단원별 학습 포인트와 방학 계획, 무료 상담 ☎ ${phone}`, body, canonical: `${siteUrl}/grade/`, crumbs });
 }
 
+const unitChips = (levelSlug, except) => unitPages.filter(unit => (!levelSlug || unit.level === levelSlug) && unit !== except).map(unit => `<a class="chip" href="/units/${unit.slug}/">${unit.keyword} 과외</a>`).join("");
+
+function unitPage(unit) {
+  const level = levels.find(item => item.slug === unit.level);
+  const path = `/units/${unit.slug}/`;
+  const keyword = `${unit.keyword} 과외`;
+  const crumbs = [["홈", "/"], ["단원별 수학과외", "/units/"], [keyword, path]];
+  const description = `${keyword} - ${unit.card} ${unit.when} 과정, 강원 18개 시군 방문·화상 1:1 수업, 무료 상담 ☎ ${phone}`;
+  const faq = faqItems([...unit.faq, ...commonFaq.slice(0, 2)], gangwon);
+  const grades = gradePages.filter(page => page.level === unit.level);
+  const related = `<section class="related"><div class="wrap"><h2>함께 찾는 단원별 수학과외</h2><div class="chips">${unitChips(null, unit)}</div><h3>학년별 ${level.label} 수학과외</h3><div class="chips">${grades.map(page => `<a class="chip" href="/grade/${page.slug}/">${page.keyword}</a>`).join("")}</div><h3>지역별 ${level.label} 수학과외</h3><div class="chips"><a class="chip" href="/${level.slug}/">강원 ${level.label} 수학과외</a>${regions.map(region => `<a class="chip" href="/regions/${region.slug}/${level.slug}/">${region.name} ${level.label} 수학과외</a>`).join("")}</div></div></section>`;
+  const body = `${hero(`${unit.keyword}<br>1:1 수학과외`, unit.lead, `${unit.eyebrow} · ${unit.when}`, crumbs)}${proof}${articleBody(unit.sections)}${process}${faqSection(faq, `${unit.short} 과외<br>자주 묻는 질문`)}${related}${contact(unit.keyword)}${renderRegionModal(false)}`;
+  return layout({ title: unit.title, description, body, canonical: `${siteUrl}${path}`, crumbs, faq });
+}
+
+function unitIndexPage() {
+  const crumbs = [["홈", "/"], ["단원별 수학과외", "/units/"]];
+  const cards = levels.map(level => {
+    const list = unitPages.filter(unit => unit.level === level.slug);
+    return `<h3 style="margin:36px 0 16px;font-size:20px">${level.label} 단원</h3><div class="level-grid">${list.map(unit => `<a class="level-card" href="/units/${unit.slug}/"><small>${unit.when}</small><h3>${unit.keyword} 과외</h3><p>${unit.card}</p><span class="more">${unit.short} 자세히 보기 →</span></a>`).join("")}</div>`;
+  }).join("");
+  const section = `<section class="level-section"><div class="wrap"><div class="section-head"><h2>막힌 단원부터<br>다시 잡습니다</h2><p>수학 성적이 떨어지는 원인은 대부분 특정 단원 하나에서 시작됩니다. 많이 막히는 단원별로 어떻게 수업하는지 확인해 보세요.</p></div>${cards}</div></section>`;
+  const body = `${hero("강원 단원별<br>수학과외", "분수, 일차방정식, 일차함수, 인수분해, 이차함수부터 삼각함수, 수열, 미적분, 확률과 통계까지 학생들이 가장 많이 막히는 단원을 1:1로 다시 잡습니다.", "MATH BY UNIT", crumbs)}${proof}${section}${regionsSection}${contact()}${renderRegionModal(false)}`;
+  return layout({ title: "강원 단원별 수학과외 | 분수·함수·인수분해·미적분 1:1", description: `초등 분수·문장제, 중등 일차방정식·일차함수·인수분해·이차함수, 고등 삼각함수·수열·미적분·확률과 통계까지 단원별 1:1 수학과외. 무료 상담 ☎ ${phone}`, body, canonical: `${siteUrl}/units/`, crumbs });
+}
+
 const pages = [{ path: "/", priority: "1.0", html: homePage() }];
+pages.push({ path: "/units/", priority: "0.8", html: unitIndexPage() });
+for (const unit of unitPages) pages.push({ path: `/units/${unit.slug}/`, priority: "0.8", html: unitPage(unit) });
 pages.push({ path: "/grade/", priority: "0.8", html: gradeIndexPage() });
 for (const page of gradePages) pages.push({ path: `/grade/${page.slug}/`, priority: "0.8", html: gradePage(page) });
 pages.push({ path: "/guide/", priority: "0.8", html: guideIndexPage() });
