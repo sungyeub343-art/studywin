@@ -1,4 +1,5 @@
-import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { copyFile, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -44,6 +45,10 @@ const schools = JSON.parse(await readFile(path.join(root, "data", "schools-gangw
 const schoolSource = "전국초중등학교위치표준데이터(2026년 10월 기준)";
 const schoolWords = { elementary: "초등학교", middle: "중학교", high: "고등학교" };
 const buildDate = new Date();
+// 한국 시간 기준 오늘 날짜 (사이트맵 lastmod)
+const today = new Date(buildDate.getTime() + 9 * 3600 * 1000).toISOString().slice(0, 10);
+// IndexNow 키: 네이버·Bing에 바뀐 페이지를 바로 알리기 위한 공개 키 (사이트 루트에 키 파일로 게시)
+const indexNowKey = "44f7dcb633519bf74212d31ce7b9a03c";
 
 // 학교급별 키워드 페이지: "지역명 + 초등/중등/고등 + 수학/수학수업/수학공부/기초수학/수학내신/수능대비/수능수학"
 const levels = [
@@ -629,7 +634,7 @@ const css = `@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:
 .faq{background:var(--paper)}.faq-list{border-top:1px solid var(--ink)}.faq-item{border-bottom:1px solid var(--line)}.faq-item summary{cursor:pointer;padding:20px 0;font-weight:700;font-size:17px;list-style:none}.faq-item summary::-webkit-details-marker{display:none}.faq-item summary:before{content:"Q.";color:var(--leaf);margin-right:10px}.faq-item p{color:var(--muted);margin:0 0 20px;padding-left:30px}
 .related{background:#eef0e9;padding:72px 0}.related h2{font-family:"Gowun Batang",serif;font-size:clamp(26px,3vw,34px);margin-bottom:0}.related h3{font-size:16px;margin:30px 0 0}
 .article{background:#fff}.article-body{max-width:780px}.article-body h2{font-family:"Gowun Batang",serif;font-size:clamp(26px,3vw,34px);line-height:1.3;margin:56px 0 16px}.article-body h2:first-child{margin-top:0}.article-body p{color:var(--muted);font-size:17px}.article-body .check-list{margin:0 0 8px}
-.school-list{list-style:none;padding:0;margin:16px 0 0}.school-list .chip:hover{border-color:var(--line);color:inherit}#schools h3 a:hover{color:var(--forest)}.school-source{margin:28px 0 0;font-size:13px;color:var(--muted)}
+.area-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.area-row{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px}.area-row strong{display:block;color:var(--forest);margin-bottom:4px}.area-row small{color:var(--muted);font-weight:600}.area-row span{font-size:14px;color:var(--muted)}@media(max-width:600px){.area-list{grid-template-columns:1fr}}.school-source{margin:28px 0 0;font-size:13px;color:var(--muted)}
 .footer-links{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:26px;padding-bottom:26px;border-bottom:1px solid rgba(255,255,255,.12);font-size:13px}.footer-links a:hover{color:#fff}
 @media(max-width:900px){.topic-grid,.level-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.topic-grid,.level-grid{grid-template-columns:1fr}.faq-item summary{font-size:16px}.faq-item p{padding-left:0}footer{padding-bottom:90px}}`;
@@ -696,7 +701,9 @@ function renderRegionModal(autoOpen = true) {
   // 같은 방문(세션) 안에서는 처음 들어온 페이지에서만 자동으로 띄웁니다.
   var seen = false;
   try { seen = sessionStorage.getItem('regionModalSeen') === '1'; sessionStorage.setItem('regionModalSeen', '1'); } catch (e) {}
-  ${autoOpen ? `if (!seen) setTimeout(openModal, 120);` : ``}
+  // 검색 결과에서 들어온 방문자에게는 화면을 가리는 팝업을 자동으로 띄우지 않습니다. (모바일 검색 순위 감점 방지)
+  var fromSearch = /(naver|google|daum|bing|zum|yahoo)\\./i.test(document.referrer);
+  ${autoOpen ? `if (!seen && !fromSearch) setTimeout(openModal, 120);` : ``}
 
   if (closeBtn) {
     closeBtn.addEventListener('click', closeModal);
@@ -745,15 +752,15 @@ const fill = (text, ctx) => text.replaceAll("{name}", ctx.name).replaceAll("{ful
 const faqItems = (items, ctx) => items.map(([q, a]) => [fill(q, ctx), fill(a, ctx)]);
 const escapeXml = text => text.replace(/[<>&"']/g, ch => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;", "'": "&apos;" })[ch]);
 
-function layout({ title, description, body, canonical = siteUrl, crumbs = [], faq = [] }) {
+function layout({ title, description, body, canonical = `${siteUrl}/`, crumbs = [], faq = [] }) {
   const graph = [
     { "@type": "EducationalOrganization", "@id": `${siteUrl}/#org`, name: "강원 수학과외", url: siteUrl, logo: `${siteUrl}/assets/logo.svg`, telephone: phone, description: "강원특별자치도 18개 시군 초등·중등·고등 1:1 수학과외", areaServed: regions.map(region => ({ "@type": "City", name: `강원특별자치도 ${region.name}${region.type}` })) },
     { "@type": "WebSite", "@id": `${siteUrl}/#website`, name: "강원 수학과외", url: siteUrl, inLanguage: "ko-KR", publisher: { "@id": `${siteUrl}/#org` } },
-    { "@type": "WebPage", "@id": canonical, url: canonical, name: title, description, inLanguage: "ko-KR", isPartOf: { "@id": `${siteUrl}/#website` }, dateModified: buildDate.toISOString() }
+    { "@type": "WebPage", "@id": canonical, url: canonical, name: title, description, inLanguage: "ko-KR", isPartOf: { "@id": `${siteUrl}/#website` }, dateModified: "__LASTMOD__" }
   ];
   if (crumbs.length) graph.push({ "@type": "BreadcrumbList", itemListElement: crumbs.map(([name, url], index) => ({ "@type": "ListItem", position: index + 1, name, item: `${siteUrl}${url}` })) });
   if (faq.length) graph.push({ "@type": "FAQPage", mainEntity: faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) });
-  return `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="naver-site-verification" content="8d466503f61c14573b40c21964c1dece8020e823"><meta name="google-site-verification" content="xwZjq-emucjWhascjT0SQmVrFQ6zTWwD7_Ybaq-vXGA"><title>${title}</title><meta name="description" content="${description}"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="${canonical}"><link rel="icon" href="/assets/logo.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="강원 수학과외" href="${siteUrl}/rss.xml"><meta property="og:type" content="website"><meta property="og:site_name" content="강원 수학과외"><meta property="og:locale" content="ko_KR"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta property="og:url" content="${canonical}"><meta property="og:image" content="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/assets/style.css"><script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": graph })}</script></head><body>${nav}${body}<div class="mobile-cta"><a href="tel:${phone}">전화 상담</a><a href="#contact">상담 신청</a></div></body></html>`;
+  return `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="naver-site-verification" content="8d466503f61c14573b40c21964c1dece8020e823"><meta name="google-site-verification" content="xwZjq-emucjWhascjT0SQmVrFQ6zTWwD7_Ybaq-vXGA"><title>${title}</title><meta name="description" content="${description}"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="${canonical}"><link rel="icon" href="/assets/logo.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="강원 수학과외" href="${siteUrl}/rss.xml"><meta property="og:type" content="website"><meta property="og:site_name" content="강원 수학과외"><meta property="og:locale" content="ko_KR"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta property="og:url" content="${canonical}"><meta property="og:image" content="${siteUrl}/assets/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="강원 수학과외 초등·중등·고등 1:1 맞춤 수학수업"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/assets/style.css"><script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": graph })}</script></head><body>${nav}${body}<div class="mobile-cta"><a href="tel:${phone}">전화 상담</a><a href="#contact">상담 신청</a></div></body></html>`;
 }
 
 function hero(title, copy, eyebrow = "Gangwon Private Math Coaching", crumbs = []) {
@@ -768,7 +775,8 @@ const regionsSection = `<section class="regions" id="region"><div class="wrap"><
 const split = `<section class="split"><div class="split-image" role="img" aria-label="학생의 학습을 지도하는 수업 공간"></div><div class="split-copy"><p class="eyebrow">Study with direction</p><h2>혼자 공부하는 힘까지<br>함께 기릅니다</h2><p>과외 시간에만 풀 수 있는 문제는 오래 남지 않습니다. 문제를 읽고, 조건을 표시하고, 풀이를 검토하는 과정을 반복해 스스로 공부할 수 있는 기준을 만듭니다.</p><ul class="check-list"><li>학교별 시험 범위와 일정 반영</li><li>매 수업 오답 원인 기록</li><li>학생·학부모 정기 학습 피드백</li></ul></div></section>`;
 const guideSection = `<section class="level-section" id="guide"><div class="wrap"><div class="section-head"><h2>수학 공부 고민,<br>학습 가이드</h2><p>내신, 수능, 방학 선행, 기초 보충처럼 상담에서 가장 많이 받는 질문을 주제별로 정리했습니다.</p></div><div class="level-grid">${guides.map(guide => `<a class="level-card" href="/guide/${guide.slug}/"><small>${guide.eyebrow}</small><h3>${guide.keyword}</h3><p>${guide.card}</p><span class="more">가이드 읽기 →</span></a>`).join("")}</div></div></section>`;
 const gradeHubSection = `<section class="level-section" id="grade-guide"><div class="wrap"><div class="section-head"><h2>학년별<br>수학과외 안내</h2><p>초등 저학년부터 고3까지, 학년마다 배우는 단원과 준비해야 할 시험이 다릅니다. 우리 아이 학년에 맞는 수업 방향을 확인하세요.</p></div><div class="level-grid">${gradePages.map(page => `<a class="level-card" href="/grade/${page.slug}/"><small>${page.eyebrow}</small><h3>${page.keyword}</h3><p>${page.card}</p><span class="more">${page.short} 자세히 보기 →</span></a>`).join("")}</div></div></section>`;
-const footerLinks =`<nav class="footer-links" aria-label="사이트 링크">${levels.map(level => `<a href="/${level.slug}/">강원 ${level.label} 수학과외</a>`).join("")}${gradePages.map(page => `<a href="/grade/${page.slug}/">${page.short}과외</a>`).join("")}${unitPages.map(unit => `<a href="/units/${unit.slug}/">${unit.short} 과외</a>`).join("")}${guides.map(guide => `<a href="/guide/${guide.slug}/">${guide.short}</a>`).join("")}${regions.map(region => `<a href="/regions/${region.slug}/">${region.name} 수학과외</a>`).join("")}</nav>`;
+// 모든 페이지에 반복되는 링크는 목록 페이지 위주로 최소화합니다. (페이지 간 중복 비율 감소)
+const footerLinks =`<nav class="footer-links" aria-label="사이트 링크">${levels.map(level => `<a href="/${level.slug}/">강원 ${level.label} 수학과외</a>`).join("")}<a href="/grade/">학년별 수학과외</a><a href="/units/">단원별 수학과외</a><a href="/guide/">학습 가이드</a>${regions.map(region => `<a href="/regions/${region.slug}/">${region.name} 수학과외</a>`).join("")}</nav>`;
 const contact = (label = "강원") => `<section class="contact" id="contact"><div class="wrap contact-inner"><div><h2>${label} 수학과외,<br>현재 고민부터 들려주세요</h2><p>학년, 지역, 원하는 수업 목표를 전화나 문자로 남겨주시면 무료 학습 상담을 도와드립니다.</p></div><a class="button" href="tel:${phone}">${phone}</a></div></section><footer><div class="wrap">${footerLinks}<div class="footer-inner"><div><div class="footer-brand">강원 수학과외</div><span>강원특별자치도 초등·중등·고등 1:1 맞춤 수학 지도</span></div><div>상담 전화 <a href="tel:${phone}">${phone}</a><br>© ${buildDate.getFullYear()} 강원 수학과외. All rights reserved.</div></div></div></footer>`;
 
 function faqSection(items, heading) {
@@ -795,8 +803,9 @@ function homePage() {
 function regionPage(region) {
   const ctx = regionContext(region);
   const crumbs = [["홈", "/"], [`${region.name} 수학과외`, ctx.path]];
-  const title = `${region.name} 수학과외 | 초등·중등·고등 1:1 맞춤 수학수업`;
-  const description = `${region.name} 수학과외 - ${region.areas} 초등 기초수학, 중등 수학내신, 고등 수능수학까지 학년별 1:1 맞춤 수업. 방문·화상 수업 무료 상담 ☎ ${phone}`;
+  const title = `${region.name} 수학과외 | 초·중·고 학교별 1:1 맞춤 · 무료 학습진단`;
+  const topAreas = schoolAreas(ctx, levels.map(level => level.slug)).slice(0, 3).map(([area]) => area).join("·");
+  const description = `${region.name} 수학과외 - ${region.name} ${schoolCounts(ctx)} 학교별 내신과 진도에 맞춘 1:1 수업. ${topAreas} 등 방문·화상 수업, 무료 학습진단 ☎ ${phone}`;
   const faq = faqItems([...commonFaq, ...levels.map(level => level.faq[0])], ctx);
   const local = `<section class="local-intro"><div class="wrap local-copy"><div><p class="eyebrow">${ctx.full} LOCAL CLASS</p><h2>${region.name} 학생에게 맞는<br>현실적인 학습 계획</h2></div><div><p>${ctx.full} ${region.areas} 인근 학생을 대상으로 ${region.name} 수학과외를 상담합니다. 지역과 학교에 따라 시험 일정과 학습 환경이 다른 만큼, 정해진 교재를 일률적으로 따라가기보다 최근 시험 결과와 목표를 먼저 확인합니다.</p><p>${withEul(region.focus)} 중심으로 수업하며, 방문 수업이 어려운 거리나 일정에는 화상 수업을 함께 안내합니다. ${region.name} 초등 수학은 기초수학과 연산 습관, ${region.name} 중등 수학은 학교별 수학내신, ${region.name} 고등 수학은 내신과 수능대비를 개인 진도에 맞춰 연결합니다.</p></div></div></section>`;
   const body = `${hero(`${region.name}<br>수학과외`, `${region.areas}에서 만나는 초등·중등·고등 1:1 맞춤 수학수업. ${withRo(region.focus)} 공부의 방향을 분명하게 잡습니다.`, "GANGWON LOCAL MATH TUTORING", crumbs)}${proof}${local}${levelSection(ctx)}${schoolSection(ctx, levels)}${process}${faqSection(faq, `${region.name} 수학과외<br>자주 묻는 질문`)}${regionsSection}${contact(region.name)}${renderRegionModal(false)}`;
@@ -808,20 +817,34 @@ function schoolSummary(list, ctx, level) {
   return list.length === 1 ? `${ctx.full} ${list[0]}` : `${list.slice(0, 3).join(", ")} 등 ${ctx.full} ${list.length}개 ${word}`;
 }
 
+// 학교가 있는 생활권(읍·면·동) 목록. 학교 수가 많은 순.
+function schoolAreas(ctx, levelSlugs) {
+  return Object.entries(schools[ctx.slug]?.areas ?? {})
+    .map(([area, list]) => [area, list.filter(([, level]) => levelSlugs.includes(level)).map(([school]) => school)])
+    .filter(([, list]) => list.length)
+    .sort((a, b) => b[1].length - a[1].length);
+}
+const areaCounts = (areas, count) => areas.slice(0, count).map(([area, list]) => `${area}(${list.length}곳)`).join(", ");
+const ruralCount = areas => areas.filter(([area]) => /[읍면]$/.test(area)).length;
+
+function schoolCounts(ctx) {
+  return levels.map(level => `${schoolWords[level.slug]} ${schools[ctx.slug][level.slug].length}곳`).join("·");
+}
+
 function schoolSection(ctx, levelList) {
   const groups = levelList.filter(level => schools[ctx.slug]?.[level.slug]?.length);
   if (!groups.length) return "";
   const single = groups.length === 1 ? groups[0] : null;
-  const heading = single ? `${ctx.name} ${schoolWords[single.slug]}<br>수학과외` : `${ctx.name} 학교별<br>수학과외`;
+  const areas = schoolAreas(ctx, groups.map(level => level.slug));
+  const rural = ruralCount(areas);
+  const ruralNote = rural ? ` 이 중 읍·면 생활권 ${rural}곳은 거리와 일정에 따라 방문 수업과 화상 수업을 함께 안내합니다.` : "";
+  const heading = single ? `${ctx.name} ${schoolWords[single.slug]}<br>생활권별 수학과외` : `${ctx.name} 생활권별<br>학교와 수학과외`;
   const lead = single
-    ? `${schoolSummary(schools[ctx.slug][single.slug], ctx, single)} 학생을 대상으로 수업합니다. 학교마다 교과서와 ${single.slug === "elementary" ? "단원평가 방식" : "시험 출제 경향"}이 다르므로 다니는 학교의 최근 시험지와 진도를 바탕으로 수업을 설계합니다.`
-    : `${ctx.full}의 초등학교, 중학교, 고등학교 학생을 대상으로 수업합니다. 학교마다 교과서와 시험 범위가 다르므로 다니는 학교의 최근 시험지와 진도를 먼저 확인합니다.`;
-  const lists = groups.map(level => {
-    const list = schools[ctx.slug][level.slug];
-    const title = single ? "" : `<h3><a href="${levelPath(level, ctx)}">${ctx.name} ${schoolWords[level.slug]} 수학과외</a> <small style="color:var(--muted);font-weight:600">${list.length}개교</small></h3>`;
-    return `${title}<ul class="chips school-list">${list.map(school => `<li class="chip">${school}</li>`).join("")}</ul>`;
-  }).join("");
-  return `<section class="related" id="schools"><div class="wrap"><div class="section-head"><h2>${heading}</h2><p>${lead}</p></div>${lists}<p class="school-source">학교 목록 출처: ${schoolSource}</p></div></section>`;
+    ? `${ctx.full} ${schoolWords[single.slug]} ${schools[ctx.slug][single.slug].length}곳은 ${areaCounts(areas, 3)} 등 ${areas.length}개 생활권에 있습니다. 학교마다 교과서와 ${single.slug === "elementary" ? "단원평가 방식" : "시험 출제 경향"}이 다르므로 다니는 학교의 최근 시험지와 진도를 바탕으로 수업을 설계합니다.${ruralNote}`
+    : `${ctx.full}에는 ${schoolCounts(ctx)}이 있고, 학교가 가장 많은 생활권은 ${areaCounts(areas, 3)}입니다. ${areas.length}개 읍·면·동 생활권별로 학교 진도와 시험 일정에 맞춰 수업합니다.${ruralNote}`;
+  const rows = areas.map(([area, list]) => `<div class="area-row"><strong>${ctx.name} ${area} <small>${list.length}곳</small></strong><span>${list.join(", ")}</span></div>`).join("");
+  const links = single ? "" : `<div class="chips" style="margin-bottom:20px">${groups.map(level => `<a class="chip" href="${levelPath(level, ctx)}">${ctx.name} ${schoolWords[level.slug]} 수학과외 (${schools[ctx.slug][level.slug].length}곳)</a>`).join("")}</div>`;
+  return `<section class="related" id="schools"><div class="wrap"><div class="section-head"><h2>${heading}</h2><p>${lead}</p></div>${links}<div class="area-list">${rows}</div><p class="school-source">학교 목록 출처: ${schoolSource}</p></div></section>`;
 }
 
 function levelPage(level, ctx) {
@@ -830,8 +853,11 @@ function levelPage(level, ctx) {
   const keyword = `${name} ${level.label} 수학과외`;
   const crumbs = ctx.slug ? [["홈", "/"], [`${name} 수학과외`, ctx.path], [keyword, path]] : [["홈", "/"], [keyword, path]];
   const title = `${keyword} | ${level.titleTail}`;
-  const description = `${keyword} - ${level.topics.map(([topic]) => `${level.label} ${topic}`).join("·")}. ${ctx.areas} ${level.student} 1:1 맞춤 수업, 무료 학습 상담 ☎ ${phone}`;
   const schoolList = ctx.slug ? schools[ctx.slug]?.[level.slug] ?? [] : [];
+  const topicText = level.topics.map(([topic]) => `${level.label} ${topic}`).join("·");
+  const description = schoolList.length
+    ? `${keyword} - ${schoolSummary(schoolList, ctx, level)} 학생 대상 ${topicText} 1:1 맞춤 수업. 무료 학습 상담 ☎ ${phone}`
+    : `${keyword} - ${topicText}. ${ctx.areas} ${level.student} 1:1 맞춤 수업, 무료 학습 상담 ☎ ${phone}`;
   const schoolFaq = schoolList.length ? [[`${name} ${schoolWords[level.slug]} 학교별 ${level.slug === "elementary" ? "진도" : "시험 범위"}에 맞춰 수업하나요?`, `네. ${schoolSummary(schoolList, ctx, level)} 학생의 교과서와 ${level.slug === "elementary" ? "단원평가 일정" : "시험 범위, 기출 경향"}을 확인해 학교별로 수업을 준비합니다.`]] : [];
   const faq = faqItems([...level.faq, ...schoolFaq, ...commonFaq], ctx);
   const intro =`<section class="local-intro"><div class="wrap local-copy"><div><p class="eyebrow">${level.eyebrow}</p><h2>${name} ${level.label} 수학,<br>지금 필요한 것부터</h2></div><div><p>${ctx.full} ${ctx.areas} 인근 ${level.student}을 위한 ${keyword}입니다. ${withRo(level.summary)}, 첫 상담에서 최근 시험지와 교재를 함께 보며 현재 위치를 확인합니다.</p><p>${withEul(ctx.focus)} 중심으로 ${name} ${level.label} ${withEul(level.topics.map(([topic]) => topic).join(", "))} 한 흐름으로 연결합니다. 방문 수업이 어려운 거리나 일정에는 화상 수업을 함께 안내합니다.</p></div></div></section>`;
@@ -933,18 +959,35 @@ await rm(dist, { recursive: true, force: true });
 await mkdir(path.join(dist, "assets"), { recursive: true });
 await writeFile(path.join(dist, "assets", "logo.svg"), logo);
 await writeFile(path.join(dist, "assets", "style.css"), css);
+await copyFile(path.join(root, "assets", "og.png"), path.join(dist, "assets", "og.png"));
+// 페이지 내용이 바뀐 경우에만 lastmod를 갱신합니다. (data/lastmod.json에 페이지별 해시와 날짜 기록)
+const lastmodFile = path.join(root, "data", "lastmod.json");
+const previous = JSON.parse(await readFile(lastmodFile, "utf8").catch(() => "{}"));
+const lastmodState = {};
+const changed = [];
 for (const page of pages) {
+  const hash = createHash("sha1").update(page.html).digest("hex");
+  const unchanged = previous[page.path]?.hash === hash;
+  page.lastmod = unchanged ? previous[page.path].date : today;
+  if (!unchanged || page.lastmod === today) changed.push(`${siteUrl}${page.path}`);
+  lastmodState[page.path] = { hash, date: page.lastmod };
+  page.html = page.html.replace("__LASTMOD__", page.lastmod);
   const directory = path.join(dist, ...page.path.split("/").filter(Boolean));
   await mkdir(directory, { recursive: true });
   await writeFile(path.join(directory, "index.html"), page.html);
 }
+await writeFile(lastmodFile, `${JSON.stringify(lastmodState, null, 1)}\n`);
+// 오늘 바뀐 페이지 목록: 배포 후 scripts/indexnow.mjs가 네이버·Bing에 전송
+await writeFile(path.join(root, ".indexnow.json"), JSON.stringify(changed));
+await writeFile(path.join(dist, `${indexNowKey}.txt`), indexNowKey);
 const meta = (html, name) => html.match(new RegExp(`<meta name="${name}" content="([^"]*)"`))[1];
 const pageTitle = html => html.match(/<title>([^<]*)<\/title>/)[1];
-const lastmod = buildDate.toISOString().slice(0, 10);
-await writeFile(path.join(dist, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${pages.map(page => `\n  <url><loc>${siteUrl}${page.path === "/" ? "" : page.path}</loc><lastmod>${lastmod}</lastmod><changefreq>weekly</changefreq><priority>${page.priority}</priority></url>`).join("")}\n</urlset>\n`);
-await writeFile(path.join(dist, "rss.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>강원 수학과외</title><link>${siteUrl}</link><description>강원특별자치도 18개 시군 초등·중등·고등 1:1 수학과외</description><language>ko</language><lastBuildDate>${buildDate.toUTCString()}</lastBuildDate>${pages.map(page => `\n<item><title>${escapeXml(pageTitle(page.html))}</title><link>${siteUrl}${page.path}</link><guid>${siteUrl}${page.path}</guid><description>${escapeXml(meta(page.html, "description"))}</description><pubDate>${buildDate.toUTCString()}</pubDate></item>`).join("")}\n</channel></rss>\n`);
+const rssDate = date => new Date(`${date}T09:00:00+09:00`).toUTCString();
+const byDate = [...pages].sort((a, b) => b.lastmod.localeCompare(a.lastmod));
+await writeFile(path.join(dist, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${pages.map(page => `\n  <url><loc>${siteUrl}${page.path}</loc><lastmod>${page.lastmod}</lastmod><changefreq>weekly</changefreq><priority>${page.priority}</priority></url>`).join("")}\n</urlset>\n`);
+await writeFile(path.join(dist, "rss.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>강원 수학과외</title><link>${siteUrl}/</link><description>강원특별자치도 18개 시군 초등·중등·고등 1:1 수학과외</description><language>ko</language><lastBuildDate>${rssDate(byDate[0].lastmod)}</lastBuildDate>${byDate.map(page => `\n<item><title>${escapeXml(pageTitle(page.html))}</title><link>${siteUrl}${page.path}</link><guid>${siteUrl}${page.path}</guid><description>${escapeXml(meta(page.html, "description"))}</description><pubDate>${rssDate(page.lastmod)}</pubDate></item>`).join("")}\n</channel></rss>\n`);
 await writeFile(path.join(dist, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`);
 await writeFile(path.join(dist, "CNAME"), "studywin.kr\n");
 await writeFile(path.join(dist, ".nojekyll"), "");
-await writeFile(path.join(dist, "404.html"), layout({ title: "페이지를 찾을 수 없습니다 | 강원 수학과외", description: "요청하신 페이지를 찾을 수 없습니다.", body: `<main class="not-found"><div><p class="eyebrow">404 ERROR</p><h1>페이지를 찾을 수 없습니다</h1><p>주소가 변경되었거나 존재하지 않는 페이지입니다.</p><a class="button" href="/">홈으로 돌아가기</a></div></main>` }).replace('content="index,follow,max-image-preview:large"', 'content="noindex"'));
+await writeFile(path.join(dist, "404.html"), layout({ title: "페이지를 찾을 수 없습니다 | 강원 수학과외", description: "요청하신 페이지를 찾을 수 없습니다.", body: `<main class="not-found"><div><p class="eyebrow">404 ERROR</p><h1>페이지를 찾을 수 없습니다</h1><p>주소가 변경되었거나 존재하지 않는 페이지입니다.</p><a class="button" href="/">홈으로 돌아가기</a></div></main>` }).replace('content="index,follow,max-image-preview:large"', 'content="noindex"').replace("__LASTMOD__", today));
 console.log(`Built ${pages.length} pages in ${dist}`);
